@@ -19,11 +19,12 @@ def shuffle_from_scratch(words):
         words.pop(random_index)
         word_index += 1
 
-    print("shuffled array: " + str(shuffled_array))
+    return shuffled_array
 
 if __name__ == '__main__':
-    words= sys.argv[1:] # take a sublist starting from index 1 till the end
+    words = sys.argv[1:] # take a list of arguments, starting from index 1 till the end
 
     shuffled_array = shuffle_from_scratch(words)
+    print(shuffled_array)
     # words[1] = reversed_string(words[1])
     # words[2] = generate_anagrams(words[2])
