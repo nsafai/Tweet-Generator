@@ -6,11 +6,24 @@ def reversed_string(any_string):
     return any_string[::-1]
 
 def generate_anagrams(any_string):
-    return ["".join(perm) for perm in itertools.permutations(params[2])]
+    return ["".join(perm) for perm in itertools.permutations(words[2])]
+
+def shuffle_from_scratch(words):
+
+    shuffled_array = []
+    word_index = 0
+
+    while len(words) != 0:
+        random_index = random.randint(0, len(words)-1)
+        shuffled_array.append(words[random_index])
+        words.pop(random_index)
+        word_index += 1
+
+    print("shuffled array: " + str(shuffled_array))
 
 if __name__ == '__main__':
-    params= sys.argv[1:] # take a sublist starting from index 1 till the end
-    random.shuffle(params)
-    params[1] = reversed_string(params[1])
-    params[2] = generate_anagrams(params[2])
-    print(params)
+    words= sys.argv[1:] # take a sublist starting from index 1 till the end
+
+    shuffled_array = shuffle_from_scratch(words)
+    # words[1] = reversed_string(words[1])
+    # words[2] = generate_anagrams(words[2])
