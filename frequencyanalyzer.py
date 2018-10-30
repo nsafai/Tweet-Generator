@@ -73,14 +73,11 @@ def histogramTuple(url):
     return histogram # return a data structure that stores ea. unique word & of times the word appears
 
 def unique_words(histogram):
-
     return len(histogram) # return the total count of unique words in the histogram.
 
 
 def frequency(word, histogram):
-    return histogram[word]
-    # returns the number of times that word appears in a text.
-    # For example, when given the word "mystery" and the Holmes histogram, it will return the integer 20.
+    return histogram[word] # returns the number of times that word appea
 
 if __name__ == '__main__':
 
