@@ -2,11 +2,11 @@ import random # to generate random numbers
 import re # for regular expressions
 
 def histogramDict(url):
-    f = open(url, 'r')
+    file = open(url, 'r')
 
-    content = f.read().lower()
+    content = file.read().lower()
     list_of_words = re.split('\W+', content) # replaces not (^) word characters with an empty string
-    f.close()
+    file.close()
 
     histogram = {} # create empty dictionary
 
@@ -18,19 +18,17 @@ def histogramDict(url):
             # add to dictionary
             histogram[word] = 1
 
-    # return a histogram data structure that stores each unique word
-    # along with the number of times the word appears in the source text.
-    return histogram
+    return histogram # return a data structure that stores ea. unique word & of times the word appears
 
 def histogramList(url):
-    f = open(url, 'r')
+    file = open(url, 'r')
 
-    content = f.read().lower()
+    content = file.read().lower()
     list_of_words = re.split('\W+', content) # replaces not (^) word characters with an empty string
-    f.close()
+    file.close()
 
     unique_list_of_words = [] # create empty list
-    counter = []
+    counter = [] # empty list that will have count per word at same index as unique_list_of_words
 
     for word in list_of_words:
         if word in unique_list_of_words:
@@ -46,19 +44,17 @@ def histogramList(url):
         histogram.append([unique_list_of_words[i], counter[i]])
         i += 1
 
-    # return a histogram data structure that stores each unique word
-    # along with the number of times the word appears in the source text.
-    return histogram
+    return histogram # return a data structure that stores ea. unique word & of times the word appears
 
 def histogramTuple(url):
-    f = open(url, 'r')
+    file = open(url, 'r')
 
-    content = f.read().lower()
+    content = file.read().lower()
     list_of_words = re.split('\W+', content) # replaces not (^) word characters with an empty string
-    f.close()
+    file.close()
 
     unique_list_of_words = [] # create empty list
-    counter = []
+    counter = [] # empty list that will have count per word at same index as unique_list_of_words
 
     for word in list_of_words:
         if word in unique_list_of_words:
@@ -74,19 +70,12 @@ def histogramTuple(url):
         histogram.append((unique_list_of_words[i], counter[i]))
         i += 1
 
-    # return a histogram data structure that stores each unique word
-    # along with the number of times the word appears in the source text.
-    return histogram
+    return histogram # return a data structure that stores ea. unique word & of times the word appears
 
 def unique_words(histogram):
-    unique_words = []
 
-    for key in histogram:
-        if histogram[key] == 1: # if word counter is 1
-            unique_words.append(histogram[key]) # add to unique_words list
+    return len(histogram) # return the total count of unique words in the histogram.
 
-    return len(unique_words)
-    # return the total count of unique words in the histogram.
 
 def frequency(word, histogram):
     return histogram[word]
@@ -109,6 +98,3 @@ if __name__ == '__main__':
 
     frequency_of_the = frequency('the', histogram)
     print("The word THE appears " + str(frequency_of_the) + " times in this file")
-
-    # print "sets      :",timeit.Timer('f(s)', 'from __main__ import s,test_set as f').timeit(1000000)
-    # print "regex     :",timeit.Timer('f(s)', 'from __main__ import s,test_re as f').timeit(1000000)
