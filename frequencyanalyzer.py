@@ -95,20 +95,20 @@ def frequency(word, histogram):
 
 if __name__ == '__main__':
 
-    # histogram = histogramDict('txt-files/blogpost.txt')
-    # print(histogram)
+    histogram = histogramDict('txt-files/blogpost.txt')
+    print(histogram)
 
     # histogram = histogramList('txt-files/blogpost.txt')
     # print(histogram)
-
-    histogram = histogramTuple('txt-files/blogpost.txt')
-    print(histogram)
-
-    # num_unique_words = unique_words(histogram) # get # of unique words from histogram dict
-    # print("There are " + str(num_unique_words) + " unique words in this file")
     #
-    # frequency_of_the = frequency('the', histogram)
-    # print("The word THE appears " + str(frequency_of_the) + " times in this file")
+    # histogram = histogramTuple('txt-files/blogpost.txt')
+    # print(histogram)
+
+    num_unique_words = unique_words(histogram) # get # of unique words from histogram dict
+    print("There are " + str(num_unique_words) + " unique words in this file")
+
+    frequency_of_the = frequency('the', histogram)
+    print("The word THE appears " + str(frequency_of_the) + " times in this file")
 
     # print "sets      :",timeit.Timer('f(s)', 'from __main__ import s,test_set as f').timeit(1000000)
     # print "regex     :",timeit.Timer('f(s)', 'from __main__ import s,test_re as f').timeit(1000000)
