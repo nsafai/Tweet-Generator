@@ -95,7 +95,7 @@ def frequency(word, histogram):
 
 if __name__ == '__main__':
 
-    histogram = histogramDict('txt-files/blogpost.txt')
+    histogram = histogramDict('txt-files/edgarallanpoe.txt')
     print(histogram)
 
     # histogram = histogramList('txt-files/blogpost.txt')
