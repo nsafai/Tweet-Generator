@@ -36,8 +36,6 @@ def frequency(word, histogram):
     # For example, when given the word "mystery" and the Holmes histogram, it will return the integer 20.
 
 if __name__ == '__main__':
-    params = sys.argv[1:] # take a list of arguments, starting from index 1 till the end
-    num_words = int(params[0]) # num_words stores the number of words to use when generating a sentence
 
     # read /usr/share/dict/words
     histogram = histogram('txt-files/blogpost.txt')
