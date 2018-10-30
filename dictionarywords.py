@@ -13,7 +13,7 @@ if __name__ == '__main__':
     num_words = int(params[0]) # num_words stores the number of words to use when generating a sentence
 
     # read /usr/share/dict/words
-    content = readFile('words.txt')
+    content = readFile('/usr/share/dict/words')
     sentence = []
     count = 0
     while count < num_words:
