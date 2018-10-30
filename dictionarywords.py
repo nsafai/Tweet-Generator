@@ -20,4 +20,6 @@ if __name__ == '__main__':
         sentence.append(random.choice(content))
         count+= 1
 
-    print(*sentence) # using a "*" removes the weird syntax you usually see when printing a list
+    for word in sentence:
+        print(word)
+    # print(*sentence) # using a "*" removes the weird syntax you usually see when printing a list
