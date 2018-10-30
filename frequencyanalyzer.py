@@ -84,10 +84,10 @@ if __name__ == '__main__':
     histogram = histogramDict('txt-files/edgarallanpoe.txt')
     print(histogram)
 
-    # histogram = histogramList('txt-files/blogpost.txt')
+    # histogram = histogramList('txt-files/edgarallanpoe.txt')
     # print(histogram)
     #
-    # histogram = histogramTuple('txt-files/blogpost.txt')
+    # histogram = histogramTuple('txt-files/edgarallanpoe.txt')
     # print(histogram)
 
     num_unique_words = unique_words(histogram) # get # of unique words from histogram dict
