@@ -38,22 +38,29 @@ def dictionaryOfProbability(histogram):
 
 def generateRandomSentence(dictionaryOfProbability, num_words):
     counter = 0
+    test_dict = {}
     list_of_word_types = list(dictionaryOfProbability.keys())
     while counter < num_words:
         random_word = random.choice(list_of_word_types)
         random_chance = random.random()
-        lower_bound = random_chance * 0.9
-        upper_bound = random_chance * 1.1
+        lower_bound = random_chance * 0.99
+        upper_bound = random_chance * 1.01
 
-        if dictionaryOfProbability[random_word] > random_chance:
-            print(random_word)
+        if lower_bound < dictionaryOfProbability[random_word] < upper_bound:
+            # print(random_word)
+            if random_word not in test_dict:
+                # add to dictionary
+                test_dict[random_word] = 1
+            else:
+                # already exists in dictionary, so increment counter at that key
+                test_dict[random_word] += 1
             counter += 1
 
-        # grab a random word from dictionary based on probability key in dictionaryOfProbability
+    print(test_dict)
 
 
 if __name__ == '__main__':
     content = readFile('txt-files/fish.txt')
     histogram = histogramDict(content)
     dictionaryOfProbability = dictionaryOfProbability(histogram)
-    generateRandomSentence(dictionaryOfProbability, 16)
+    generateRandomSentence(dictionaryOfProbability, 10000)
