@@ -37,25 +37,20 @@ def dictionaryOfProbability(histogram):
     return dictionaryOfProbability
 
 def generateRandomSentence(dictionaryOfProbability, num_words):
-    counter = 0
+    counter = 1
     test_dict = {}
     list_of_word_types = list(dictionaryOfProbability.keys())
     while counter < num_words:
         random_word = random.choice(list_of_word_types)
         random_chance = random.random()
-        lower_bound = random_chance * 0.99
-        upper_bound = random_chance * 1.01
-
-        if lower_bound < dictionaryOfProbability[random_word] < upper_bound:
-            # print(random_word)
-            if random_word not in test_dict:
+        if dictionaryOfProbability[random_word] > random_chance:
+            if random_word not in test_dict: # counter function
                 # add to dictionary
                 test_dict[random_word] = 1
             else:
                 # already exists in dictionary, so increment counter at that key
                 test_dict[random_word] += 1
             counter += 1
-
     print(test_dict)
 
 
