@@ -6,9 +6,7 @@ def histogramDict(url):
     content = file.read().lower()
     list_of_words = re.split('\W+', content) # replaces not (^) word characters with an empty string
     file.close()
-
     histogram = {} # create empty dictionary
-
     for word in list_of_words:
         if word not in histogram:
             # add to dictionary
@@ -16,7 +14,6 @@ def histogramDict(url):
         else:
             # already exists in dictionary, so increment counter at that key
             histogram[word] += 1
-
     return histogram # return a data structure that stores ea. unique word & of times the word appears
 
 def unique_words(histogram):
@@ -29,9 +26,7 @@ if __name__ == '__main__':
 
     histogram = histogramDict('txt-files/edgarallanpoe.txt')
     print(histogram)
-
     num_unique_words = unique_words(histogram) # get # of unique words from histogram dict
     print("There are " + str(num_unique_words) + " unique words in this file")
-
     frequency_of_the = frequency('the', histogram)
     print("The word THE appears " + str(frequency_of_the) + " times in this file")

@@ -5,7 +5,6 @@ def readFile(url):
     f = open(url, 'r') # open file at URL
     content = f.read().splitlines() # split file up lines and add each linne to an array named 'content'
     f.close()
-
     return content
 
 def returnRandomWords(content, num_words):
@@ -15,7 +14,6 @@ def returnRandomWords(content, num_words):
         random_word = random.choice(content)
         sentence.append(random_word)
         count+= 1
-
     return sentence
 
 
