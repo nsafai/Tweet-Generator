@@ -9,10 +9,6 @@ app = Flask(__name__)
 
 # --- FUNCTIONS BASED ON MODULES IMPORTED ABOVE ---
 def sampleWords(source_text, num_words):
-    content = cleanup.readFile(source_text)
-    list_of_tokens = tokenizer.listOfTokens(content)
-    histogram_dict = word_count.histogramDict(list_of_tokens)
-    dict_of_probability = sample.dictionaryOfProbability(histogram_dict)
     sample_words = sample.generateRandomSentence(dict_of_probability, num_words)
     return sample_words
 
@@ -20,12 +16,12 @@ def sampleWords(source_text, num_words):
 @app.route('/')
 def index():
     num_words = 23
-    sample_words = sampleWords('txt-files/edgarallanpoe.txt', num_words)
+    sample_words = sampleWords(source_text, num_words)
     return sample_words
 
 @app.route('/<num_words>')
 def generate_sentence(num_words):
-    sample_words = sampleWords('txt-files/edgarallanpoe.txt', int(num_words))
+    sample_words = sampleWords(source_text, int(num_words))
     return sample_words
 
 if __name__ == '__main__':
@@ -33,6 +29,11 @@ if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0' , port=5000)
 
+    source_text = 'txt-files/edgarallanpoe.txt'
+    content = cleanup.readFile(source_text)
+    list_of_tokens = tokenizer.listOfTokens(content)
+    histogram_dict = word_count.histogramDict(list_of_tokens)
+    dict_of_probability = sample.dictionaryOfProbability(histogram_dict)
     # -- TO DEBUG BY RUNNING SCRIPT, UNCOMMENT BELOW --
     # num_words = 23
     # sample_words = sampleWords('txt-files/edgarallanpoe.txt', num_words)
