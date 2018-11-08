@@ -40,18 +40,21 @@ def generateRandomSentence(dictionaryOfProbability, num_words):
     counter = 1
     test_dict = {}
     list_of_word_types = list(dictionaryOfProbability.keys())
+    sentence = []
     while counter < num_words:
         random_word = random.choice(list_of_word_types)
         random_chance = random.random()
         if dictionaryOfProbability[random_word] > random_chance:
-            if random_word not in test_dict: # counter function
-                # add to dictionary
-                test_dict[random_word] = 1
-            else:
-                # already exists in dictionary, so increment counter at that key
-                test_dict[random_word] += 1
-            counter += 1
-    print(test_dict)
+            senntence.append(random_word)
+            # COUNTER
+            # if random_word not in test_dict: # counter function
+            #     # add to dictionary
+            #     test_dict[random_word] = 1
+            # else:
+            #     # already exists in dictionary, so increment counter at that key
+            #     test_dict[random_word] += 1
+            # counter += 1
+    return sentence
 
 
 if __name__ == '__main__':

@@ -23,4 +23,4 @@ if __name__ == '__main__':
     content = readFile('/usr/share/dict/words') # read /usr/share/dict/words
 
     random_words = returnRandomWords(content, num_words)
-    print(*random_words) # using a * removes the ugly "[" syntax from the console output
+    # print(*random_words) # using a * removes the ugly "[" syntax from the console output
