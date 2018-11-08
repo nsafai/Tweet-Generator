@@ -24,6 +24,17 @@ def index():
 
     return str(sentence)
 
+@app.route('/<number>')
+def generate_sentence(number):
+    # show the user profile for that user
+    num_words = number
+    content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
+    histogram = stochasticsampling.histogramDict(content)
+    dictionaryOfProbability = stochasticsampling.dictionaryOfProbability(histogram)
+    sentence, test_dict = stochasticsampling.generateRandomSentence(dictionaryOfProbability, num_words)
+
+    return str(sentence)
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0' , port=5000)
