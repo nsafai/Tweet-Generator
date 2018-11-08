@@ -16,7 +16,6 @@ def listOfWords(content):
 if __name__ == '__main__':
     params = sys.argv[1:] # take a list of arguments, starting from index 1 till the end
     source_text = str(params[0]) # url for source_text
-
     content = readFile(source_text)
     list_of_words = listOfWords(content)
     print(list_of_words)
