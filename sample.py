@@ -1,33 +1,15 @@
-import random # to generate random numbers
-import re # for regular expressions
-
-def readFile(url):
-    file = open(url, 'r')
-    content = file.read().lower()
-    file.close()
-    return content
-
-def histogramDict(content):
-    list_of_tokens = re.split('\W+', content) # replaces not (^) word characters with an empty string
-    histogram = {} # create empty dictionary
-    for word in list_of_tokens:
-        if word not in histogram:
-            # add to dictionary
-            histogram[word] = 1
-        else:
-            # already exists in dictionary, so increment counter at that key
-            histogram[word] += 1
-    histogram.pop('') # for some reason the reg expression above adds a key '' that needs to be removed
-    return histogram # return a data structure that stores ea. unique word & of times the word appears
-
+# module for generating a sample word from a histogram
+import sys # for command line args
+import cleanup # to cleanup source file
+import tokenize # turn source file into a list of tokens
+import word_count # to get a histogram from source file
+import random
 
 def unique_words(histogram):
     return len(histogram) # return the total count of unique words in the histogram.
 
-
 def frequency(word, histogram):
     return histogram[word] # returns the number of times that word appea
-
 
 def dictionaryOfProbability(histogram):
     total_number_words = sum(histogram.values())
@@ -57,9 +39,13 @@ def generateRandomSentence(dictionaryOfProbability, num_words):
 
 
 if __name__ == '__main__':
-    num_words = 100
-    content = readFile('txt-files/edgarallanpoe.txt')
-    histogram = histogramDict(content)
+    params = sys.argv[1:] # take a list of arguments, starting from index 1 till the end
+    source_text = str(params[0]) # url for source_text
+    num_words = int(params[1]) # number of sample words to generate
+
+    content = cleanup.readFile(source_text)
+    list_of_tokens = tokenize.listOfTokens(content)
+    histogram = word_count.histogramDict(list_of_tokens)
     dictionaryOfProbability = dictionaryOfProbability(histogram)
     sentence, test_dict = generateRandomSentence(dictionaryOfProbability, num_words)
     print(sentence)

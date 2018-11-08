@@ -4,10 +4,10 @@ import re # for regular expressions
 def histogramDict(url):
     file = open(url, 'r')
     content = file.read().lower()
-    list_of_words = re.split('\W+', content) # replaces not (^) word characters with an empty string
+    list_of_tokens = re.split('\W+', content) # replaces not (^) word characters with an empty string
     file.close()
     histogram = {} # create empty dictionary
-    for word in list_of_words:
+    for word in list_of_tokens:
         if word not in histogram:
             # add to dictionary
             histogram[word] = 1

@@ -1,10 +1,11 @@
  # module for generating histograms from a list of tokens
-import cleanup
-import sys
+import cleanup # clean up source file
+import tokenize # turn source file into list of tokens
+import sys # for command line args
 
-def histogramDict(list_of_words):
+def histogramDict(list_of_tokens):
     histogram = {} # create empty dictionary
-    for word in list_of_words:
+    for word in list_of_tokens:
         if word not in histogram:
             # add to dictionary
             histogram[word] = 1
@@ -16,7 +17,8 @@ def histogramDict(list_of_words):
 if __name__ == '__main__':
     params = sys.argv[1:] # take a list of arguments, starting from index 1 till the end
     source_text = str(params[0]) # url for source_text
+
     content = cleanup.readFile(source_text)
-    list_of_words = cleanup.listOfWords(content)
-    histogram = histogramDict(list_of_words)
+    list_of_tokens = tokenize.listOfTokens(content)
+    histogram = histogramDict(list_of_tokens)
     print(histogram)

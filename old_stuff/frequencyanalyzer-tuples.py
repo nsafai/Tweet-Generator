@@ -4,22 +4,22 @@ import re # for regular expressions
 def histogramTuple(url):
     file = open(url, 'r')
     content = file.read().lower()
-    list_of_words = re.split('\W+', content) # replaces not (^) word characters with an empty string
+    list_of_tokens = re.split('\W+', content) # replaces not (^) word characters with an empty string
     file.close()
-    unique_list_of_words = [] # create empty list
-    word_counter = [] # empty list that will have count per word at same index as unique_list_of_words
-    for word in list_of_words:
-        if word not in unique_list_of_words:
+    unique_list_of_tokens = [] # create empty list
+    word_counter = [] # empty list that will have count per word at same index as unique_list_of_tokens
+    for word in list_of_tokens:
+        if word not in unique_list_of_tokens:
             # add to list
-            unique_list_of_words.append(word)
+            unique_list_of_tokens.append(word)
             word_counter.append(1)
         else:
             # word is already in list, increment word_counter at same index as word
-            word_counter[unique_list_of_words.index(word)] += 1 # increment word_counter for the same index
+            word_counter[unique_list_of_tokens.index(word)] += 1 # increment word_counter for the same index
     histogram = []
     i = 0
-    for word in unique_list_of_words:
-        histogram.append((unique_list_of_words[i], word_counter[i]))
+    for word in unique_list_of_tokens:
+        histogram.append((unique_list_of_tokens[i], word_counter[i]))
         i += 1
     return histogram # return a data structure that stores ea. unique word & of times the word appears
 
