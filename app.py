@@ -22,3 +22,7 @@ def index():
 
     random_words = dictionarywords.returnRandomWords(content, num_words)
     return str(', '.join(random_words))
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run(host = '0.0.0.0',port=5005)
