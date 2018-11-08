@@ -1,6 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
-import sentencegenerator
+import stochasticsampling
 
 # @app.route('/')
 # def index():
@@ -16,11 +16,13 @@ import sentencegenerator
 
 @app.route('/')
 def index():
-    num_words = 20 # num_words stores the number of words to use when generating a sentence
-    content = sentencegenerator.readFile('txt-files/edgarallanpoe.txt')
-    random_words = sentencegenerator.returnRandomWords(content, num_words)
+    num_words = 30
+    content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
+    histogram = stochasticsampling.histogramDict(content)
+    dictionaryOfProbability = stochasticsampling.dictionaryOfProbability(histogram)
+    sentence, test_dict = stochasticsampling.generateRandomSentence(dictionaryOfProbability, num_words)
 
-    return str(random_words)
+    return str(sentence)
 
 if __name__ == '__main__':
     app.debug = True

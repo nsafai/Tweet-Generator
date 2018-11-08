@@ -45,20 +45,21 @@ def generateRandomSentence(dictionaryOfProbability, num_words):
         random_word = random.choice(list_of_word_types)
         random_chance = random.random()
         if dictionaryOfProbability[random_word] > random_chance:
-            senntence.append(random_word)
-            # COUNTER
-            # if random_word not in test_dict: # counter function
-            #     # add to dictionary
-            #     test_dict[random_word] = 1
-            # else:
-            #     # already exists in dictionary, so increment counter at that key
-            #     test_dict[random_word] += 1
-            # counter += 1
-    return sentence
+            sentence.append(random_word)
+            if random_word not in test_dict: # counter function
+                # add to dictionary
+                test_dict[random_word] = 1
+            else:
+                # already exists in dictionary, so increment counter at that key
+                test_dict[random_word] += 1
+            counter += 1
+    return (' '.join(sentence)), test_dict
 
 
 if __name__ == '__main__':
-    content = readFile('txt-files/fish.txt')
+    num_words = 100
+    content = readFile('txt-files/edgarallanpoe.txt')
     histogram = histogramDict(content)
     dictionaryOfProbability = dictionaryOfProbability(histogram)
-    generateRandomSentence(dictionaryOfProbability, 10000)
+    sentence, test_dict = generateRandomSentence(dictionaryOfProbability, num_words)
+    print(sentence)
