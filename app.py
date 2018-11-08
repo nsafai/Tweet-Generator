@@ -24,7 +24,7 @@ def index():
 
     return str(sentence)
 
-@app.route('/gen/<number>')
+@app.route('/<number>')
 def generate_sentence(num_words):
     # show the user profile for that user
     content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
