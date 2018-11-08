@@ -1,4 +1,1 @@
-pip
-setuptools
-Flask
-gunicorn
+gunicorn==19.9.0
