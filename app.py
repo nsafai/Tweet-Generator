@@ -16,7 +16,7 @@ import stochasticsampling
 
 @app.route('/')
 def index():
-    num_words = 30
+    num_words = 20
     content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
     histogram = stochasticsampling.histogramDict(content)
     dictionaryOfProbability = stochasticsampling.dictionaryOfProbability(histogram)
