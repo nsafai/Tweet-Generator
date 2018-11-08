@@ -1,7 +1,7 @@
 # module for generating a sample word from a histogram
 import sys # for command line args
 import cleanup # to cleanup source file
-import tokenize # turn source file into a list of tokens
+import tokenizer # turn source file into a list of tokens
 import word_count # to get a histogram from source file
 import random
 
@@ -20,7 +20,7 @@ def dictionaryOfProbability(histogram):
 
 def generateRandomSentence(dictionaryOfProbability, num_words):
     counter = 1
-    test_dict = {}
+    # test_dict = {}
     list_of_word_types = list(dictionaryOfProbability.keys())
     sentence = []
     while counter < num_words:
@@ -28,14 +28,14 @@ def generateRandomSentence(dictionaryOfProbability, num_words):
         random_chance = random.random()
         if dictionaryOfProbability[random_word] > random_chance:
             sentence.append(random_word)
-            if random_word not in test_dict: # counter function
-                # add to dictionary
-                test_dict[random_word] = 1
-            else:
-                # already exists in dictionary, so increment counter at that key
-                test_dict[random_word] += 1
+            # if random_word not in test_dict: # counter function
+            #     # add to dictionary
+            #     test_dict[random_word] = 1
+            # else:
+            #     # already exists in dictionary, so increment counter at that key
+            #     test_dict[random_word] += 1
             counter += 1
-    return (' '.join(sentence)), test_dict
+    return (' '.join(sentence))
 
 
 if __name__ == '__main__':
@@ -43,8 +43,9 @@ if __name__ == '__main__':
     source_text = str(params[0]) # url for source_text
     num_words = int(params[1]) # number of sample words to generate
     content = cleanup.readFile(source_text)
-    list_of_tokens = tokenize.listOfTokens(content)
+    list_of_tokens = tokenizer.listOfTokens(content)
     histogram = word_count.histogramDict(list_of_tokens)
     dictionaryOfProbability = dictionaryOfProbability(histogram)
-    sentence, test_dict = generateRandomSentence(dictionaryOfProbability, num_words)
+    sentence = generateRandomSentence(dictionaryOfProbability, num_words)
+    # sentence, test_dict = generateRandomSentence(dictionaryOfProbability, num_words)
     print(sentence)
