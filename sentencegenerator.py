@@ -21,7 +21,7 @@ def returnRandomWords(content, num_words):
 
 if __name__ == '__main__':
     # params = sys.argv[1:] # take a list of arguments, starting from index 1 till the end
-    num_words = 20 # num_words stores the number of words to use when generating a sentence
+    # num_words = 20 # num_words stores the number of words to use when generating a sentence
     content = readFile('txt-files/edgarallanpoe.txt')
     random_words = returnRandomWords(content, num_words)
     print(random_words)

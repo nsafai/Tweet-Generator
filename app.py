@@ -1,7 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
-import stochasticsampling
-import dictionarywords
+import sentencegenerator
 
 # @app.route('/')
 # def index():
@@ -17,11 +16,11 @@ import dictionarywords
 
 @app.route('/')
 def index():
-    num_words = 10 # num_words stores the number of words to use when generating a sentence
-    content = dictionarywords.readFile('/usr/share/dict/words') # read /usr/share/dict/words
+    num_words = 20 # num_words stores the number of words to use when generating a sentence
+    content = sentencegenerator.readFile('txt-files/edgarallanpoe.txt')
+    random_words = sentencegenerator.returnRandomWords(content, num_words)
 
-    random_words = dictionarywords.returnRandomWords(content, num_words)
-    return str(', '.join(random_words))
+    return str(' '.join(random_words))
 
 if __name__ == '__main__':
     app.debug = True
