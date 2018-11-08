@@ -1,44 +1,33 @@
+import cleanup
+import tokenize
+import word_count
+import sample
+import sentence
 from flask import Flask
 app = Flask(__name__)
-import stochasticsampling
 
+# define some functions that compose the above modules
 # @app.route('/')
 # def index():
-#     content = stochasticsampling.readFile('txt-files/fish.txt')
-#     # app.logger.debug(content)
+#     num_words = 20
+#     content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
 #     histogram = stochasticsampling.histogramDict(content)
-#     # app.logger.debug(histogram)
 #     dictionaryOfProbability = stochasticsampling.dictionaryOfProbability(histogram)
-#     # app.logger.debug(dictionaryOfProbability)
-#     result = stochasticsampling.generateRandomSentence(dictionaryOfProbability, 100)
-#     # app.logger.debug(result)
-#     return str(result)
-
-@app.route('/')
-def index():
-    num_words = 20
-    content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
-    histogram = stochasticsampling.histogramDict(content)
-    dictionaryOfProbability = stochasticsampling.dictionaryOfProbability(histogram)
-    sentence, test_dict = stochasticsampling.generateRandomSentence(dictionaryOfProbability, num_words)
-
-    return str(sentence)
-
-@app.route('/<num_words>')
-def generate_sentence(num_words):
-    # show the user profile for that user
-    content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
-    histogram = stochasticsampling.histogramDict(content)
-    dictionaryOfProbability = stochasticsampling.dictionaryOfProbability(histogram)
-    sentence, test_dict = stochasticsampling.generateRandomSentence(dictionaryOfProbability, int(num_words))
-
-    return str(sentence)
-
-@app.route('/user/<username>')
-def show_user_profile(username):
-    # show the user profile for that user
-    return 'User %s' % username
+#     sentence, test_dict = stochasticsampling.generateRandomSentence(dictionaryOfProbability, num_words)
+#
+#     return str(sentence)
+#
+# @app.route('/<num_words>')
+# def generate_sentence(num_words):
+#     # show the user profile for that user
+#     content = stochasticsampling.readFile('txt-files/edgarallanpoe.txt')
+#     histogram = stochasticsampling.histogramDict(content)
+#     dictionaryOfProbability = stochasticsampling.dictionaryOfProbability(histogram)
+#     sentence, test_dict = stochasticsampling.generateRandomSentence(dictionaryOfProbability, int(num_words))
+#
+#     return str(sentence)
 
 if __name__ == '__main__':
+    # code to run when file is executed
     app.debug = True
     app.run(host='0.0.0.0' , port=5000)
