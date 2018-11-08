@@ -43,7 +43,7 @@ if __name__ == '__main__':
     source_text = str(params[0]) # url for source_text
     num_words = int(params[1]) # number of sample words to generate
     content = cleanup.readFile(source_text)
-    list_of_tokens = tokenize.tokensFrom(content)
+    list_of_tokens = tokenize.listOfTokens(content)
     histogram = word_count.histogramDict(list_of_tokens)
     dictionaryOfProbability = dictionaryOfProbability(histogram)
     sentence, test_dict = generateRandomSentence(dictionaryOfProbability, num_words)

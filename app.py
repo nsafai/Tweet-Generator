@@ -10,7 +10,7 @@ app = Flask(__name__)
 # --- FUNCTIONS BASED ON MODULES IMPORTED ABOVE ---
 def sampleWords(source_text, num_words):
     content = cleanup.readFile(source_text)
-    list_of_tokens = tokenize.tokensFrom(content)
+    list_of_tokens = tokenize.listOfTokens(content)
     histogram_dict = word_count.histogramDict(list_of_tokens)
     dict_of_probability = sample.dictionaryOfProbability(histogram_dict)
     sample_words = sample.generateRandomSentence(dict_of_probability, num_words)
