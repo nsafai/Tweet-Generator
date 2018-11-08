@@ -20,7 +20,7 @@ def index():
     content = sentencegenerator.readFile('txt-files/edgarallanpoe.txt')
     random_words = sentencegenerator.returnRandomWords(content, num_words)
 
-    return str(' '.join(random_words))
+    return str(random_words)
 
 if __name__ == '__main__':
     app.debug = True
