@@ -25,7 +25,7 @@ def index():
 
 @app.route('/<num_words>')
 def generate_sentence(num_words):
-    sample_words = sampleWords('txt-files/edgarallanpoe.txt', num_words)
+    sample_words = sampleWords('txt-files/edgarallanpoe.txt', int(num_words))
     return sample_words
 
 if __name__ == '__main__':
