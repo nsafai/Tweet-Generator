@@ -13,7 +13,7 @@ Building a tweet generator with the modest goal of passing the Turing test using
 ## How can I try this?
 - Go to https://twt-generator.herokuapp.com -- it will automatically generate a 23 word sample from Edgar Allan Poe.
 - Refresh for another sample
-- If you want a longer sample, you can go to https://twt-generator.herokuapp.com/200 for a 200 word sample. (Note: This app is a WIP. It currently crashes above 1,000 words.)
+- If you want a longer sample, you can go to https://twt-generator.herokuapp.com/?num=200 for a 200 word sample.
 
 ## Milestones
 - [x] **1. Rearranging words from terminal output.** To test this, clone the repo and run `python3 rearrange.py some random words`
@@ -31,12 +31,3 @@ Building a tweet generator with the modest goal of passing the Turing test using
 - [ ] **13. Parsing Text and Clean Up**
 - [ ] **14. Tokenization**
 - [ ] **15. Time to Tweet**
-
-## App Architecture reflections (related to #6 above)
-What are the key features of the application? Are these clearly separated into their own files, classes, and/or modules?
-Are the names of files, modules, functions, and variables appropriate and accurate? Would a new programmer be able to understand the names without too much contextual knowledge?
-What are the scopes of variables and are they appropriate for their use case? If there are global variables, why are they needed?
-Are the functions small and clearly specified, with as few side effects as possible?
-Are there functions that could be better organized in an Object-Oriented Programming style by defining them as methods of a class?
-Can files be used as both modules and as scripts?
-Do modules all depend on each other or can they be used independently?
