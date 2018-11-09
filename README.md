@@ -11,7 +11,7 @@ Building a tweet generator with the modest goal of passing the Turing test using
 **sample.py**: to generate a random sample of __ words from a source file
 
 ## How can I try this?
-- Go to https://twt-generator.herokuapp.com -- it will automatically generate a 23 word sample from Edgar Allan Poe.
+- Go to https://twt-generator.herokuapp.com -- it will automatically generate a 23 word sample from Alice in Wonderland
 - Refresh for another sample
 - If you want a longer sample, you can go to https://twt-generator.herokuapp.com/?num=200 for a 200 word sample.
 
