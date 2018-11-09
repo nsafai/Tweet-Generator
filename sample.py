@@ -8,7 +8,6 @@ import time
 
 
 def generateWord(histogram_dict):
-    start_time = time.time()
     total_number_tokens = sum(histogram_dict.values())
     random_chance = random.randint(1, total_number_tokens)
     running_total = 1
@@ -16,19 +15,23 @@ def generateWord(histogram_dict):
     for key, value in histogram_dict.items():
         running_total += value
         if running_total > random_chance:
+
             return key
         else:
             continue
-    run_time = time.time() - start_time
-    print('run time: ' + str(run_time))
+
 
 def generateSentence(histogram, num_words):
+    start_time = time.time()
     counter = 0
     sentence = []
     while counter < num_words:
         sentence.append(generateWord(histogram))
         counter += 1
-    return ' '.join(sentence)
+    run_time = time.time() - start_time
+    print('run time: ' + str(run_time))
+    clean_sentence = ' '.join(sentence).capitalize() + str(".")
+    return clean_sentence
 
 def sentenceTester(sentence):
     test_dict = {}
