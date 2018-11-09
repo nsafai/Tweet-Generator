@@ -4,38 +4,42 @@ import cleanup # to cleanup source file
 import tokenizer # turn source file into a list of tokens
 import word_count # to get a histogram from source file
 import random
+import time
 
-def unique_words(histogram):
-    return len(histogram) # return the total count of unique words in the histogram.
 
-def frequency(word, histogram):
-    return histogram[word] # returns the number of times that word appea
+def generateWord(histogram_dict):
+    start_time = time.time()
+    total_number_tokens = sum(histogram_dict.values())
+    random_chance = random.randint(1, total_number_tokens)
+    running_total = 1
+    # items() turns a dictionary into an iterable obj
+    for key, value in histogram_dict.items():
+        running_total += value
+        if running_total > random_chance:
+            return key
+        else:
+            continue
+    run_time = time.time() - start_time
+    print('run time: ' + str(run_time))
 
-def dictionaryOfProbability(histogram):
-    total_number_words = sum(histogram.values())
-    dictionaryOfProbability = {}
-    for word in histogram:
-        dictionaryOfProbability[word] = frequency(word, histogram) / total_number_words
-    return dictionaryOfProbability
-
-def generateRandomSentence(dictionaryOfProbability, num_words):
-    counter = 1
-    # test_dict = {}
-    list_of_word_types = list(dictionaryOfProbability.keys())
+def generateSentence(histogram, num_words):
+    counter = 0
     sentence = []
     while counter < num_words:
-        random_word = random.choice(list_of_word_types)
-        random_chance = random.random()
-        if dictionaryOfProbability[random_word] > random_chance:
-            sentence.append(random_word)
-            # if random_word not in test_dict: # counter function
-            #     # add to dictionary
-            #     test_dict[random_word] = 1
-            # else:
-            #     # already exists in dictionary, so increment counter at that key
-            #     test_dict[random_word] += 1
-            counter += 1
-    return (' '.join(sentence))
+        sentence.append(generateWord(histogram))
+        counter += 1
+    return ' '.join(sentence)
+
+def sentenceTester(sentence):
+    test_dict = {}
+    for word in sentence:
+        if word not in test_dict:
+            # add to dict
+            test_dict[word] = 1
+        else:
+            # already exists in dict so increment counter at that key
+            test_dict[word] += 1
+    return test_dict
 
 
 if __name__ == '__main__':
@@ -45,7 +49,7 @@ if __name__ == '__main__':
     content = cleanup.readFile(source_text)
     list_of_tokens = tokenizer.listOfTokens(content)
     histogram = word_count.histogramDict(list_of_tokens)
-    dictionaryOfProbability = dictionaryOfProbability(histogram)
-    sentence = generateRandomSentence(dictionaryOfProbability, num_words)
-    # sentence, test_dict = generateRandomSentence(dictionaryOfProbability, num_words)
+    sentence = generateSentence(histogram, num_words)
+    test_dict = sentenceTester(sentence)
     print(sentence)
+    print(test_dict)
