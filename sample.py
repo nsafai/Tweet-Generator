@@ -15,11 +15,9 @@ def generateWord(histogram_dict):
     for key, value in histogram_dict.items():
         running_total += value
         if running_total > random_chance:
-
             return key
         else:
             continue
-
 
 def generateSentence(histogram, num_words):
     start_time = time.time()
