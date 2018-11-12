@@ -5,7 +5,7 @@ import tokenizer # turn source file into a list of tokens
 import word_count # to get a histogram from source file
 import random
 import time
-
+from markov_dictogram import MarkovDictogram
 
 def generateWord(histogram_dict):
     total_number_tokens = sum(histogram_dict.values())
@@ -28,10 +28,24 @@ def generateSentence(histogram, num_words):
         counter += 1
     run_time = time.time() - start_time
     print('run time: ' + str(run_time))
+    clean_sentence = capitalizeAndPunctuate(sentence)
+    return clean_sentence
+
+def generateMarkovSentence(word_histogram, markov_dictogram, num_words):
+    sentence = []
+
+    random_weighted_word = generateWord(word_histogram)
+    while len(sentence) <= num_words:
+        sentence.append(random_weighted_word)
+        random_weighted_word = generateWord(markov_dictogram[random_weighted_word])
+    clean_sentence = capitalizeAndPunctuate(sentence)
+    return clean_sentence
+
+def capitalizeAndPunctuate(sentence):
     clean_sentence = ' '.join(sentence).capitalize() + str(".")
     return clean_sentence
 
-def sentenceTester(sentence):
+def wordFrequencyTester(sentence):
     test_dict = {}
     for word in sentence:
         if word not in test_dict:
@@ -49,8 +63,13 @@ if __name__ == '__main__':
     num_words = int(params[1]) # number of sample words to generate
     content = cleanup.readFile(source_text)
     list_of_tokens = tokenizer.listOfTokens(content)
-    histogram = word_count.histogramDict(list_of_tokens)
-    sentence = generateSentence(histogram, num_words)
-    test_dict = sentenceTester(sentence)
+    word_histogram = word_count.histogramDict(list_of_tokens)
+    sentence = generateSentence(word_histogram, num_words)
     print(sentence)
+    test_dict = wordFrequencyTester(sentence)
     print(test_dict)
+    markov_dictogram = MarkovDictogram(list_of_tokens)
+    print(markov_dictogram)
+    markov_sentence = generateMarkovSentence(word_histogram, markov_dictogram, num_words)
+    print(markov_sentence)
+    print

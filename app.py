@@ -3,7 +3,7 @@ import cleanup # to cleanup source file
 import tokenizer # turn source file into a list of tokens
 import word_count # to get a histogram from source file
 import sample # to generate a random sample of __ words from a source file
-# import sentence
+from markov_dictogram import MarkovDictogram
 from flask import Flask, request
 app = Flask(__name__)
 
@@ -11,14 +11,16 @@ app = Flask(__name__)
 source_text = 'txt-files/alice.txt'
 content = cleanup.readFile(source_text)
 list_of_tokens = tokenizer.listOfTokens(content)
-histogram = word_count.histogramDict(list_of_tokens)
+word_histogram = word_count.histogramDict(list_of_tokens)
+markov_dictogram = MarkovDictogram(list_of_tokens)
+
 
 # --- ROUTES ---
 @app.route('/')
 def index():
     num_words = request.args.get('num', default=23, type=int)
-    sentence = sample.generateSentence(histogram, num_words)
-    return sentence
+    markov_sentence = sample.generateMarkovSentence(word_histogram, markov_dictogram, num_words)
+    return markov_sentence
 
 # @app.route('/<num_words>')
 # def generate_sentence(num_words):

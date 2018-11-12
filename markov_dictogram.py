@@ -13,14 +13,12 @@ class MarkovDictogram(Dictogram):
             word_list_length = len(word_list)
             for word_index in range(word_list_length - 1): # ea. word except last (because no following word)
                 self.add_count(word_list[word_index],word_list[word_index+1])
-                print(self)
-
 
     def add_count(self, word, next_word):
         """Counts how many times next_word follows word"""
         if word in self: # word is in MarkovDictogram
             if next_word in self[word]: # alrdy seen next_word after word
-                self[word][next_word] += 1
+                self[word][next_word] += 1 # word dictogram at index = [next_word]
             else:
                 self[word][next_word] = 1 # 1st time seeing next_word after word
         else: # never seen word before
