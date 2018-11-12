@@ -17,7 +17,7 @@ markov_dictogram = MarkovDictogram(list_of_tokens)
 # --- ROUTES ---
 @app.route('/')
 def index():
-    num_words = request.args.get('num', default=12, type=int)
+    num_words = request.args.get('num', default=17, type=int)
     markov_sentence = sample.generateMarkovSentence(word_histogram, markov_dictogram, num_words)
     return markov_sentence
 
