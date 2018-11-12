@@ -14,18 +14,12 @@ list_of_tokens = tokenizer.listOfTokens(content)
 word_histogram = word_count.histogramDict(list_of_tokens)
 markov_dictogram = MarkovDictogram(list_of_tokens)
 
-
 # --- ROUTES ---
 @app.route('/')
 def index():
-    num_words = request.args.get('num', default=23, type=int)
+    num_words = request.args.get('num', default=12, type=int)
     markov_sentence = sample.generateMarkovSentence(word_histogram, markov_dictogram, num_words)
     return markov_sentence
-
-# @app.route('/<num_words>')
-# def generate_sentence(num_words):
-#     sentence = sample.generateSentence(histogram, num_words)
-#     return sentence
 
 if __name__ == '__main__':
     # code to run when file is executed
