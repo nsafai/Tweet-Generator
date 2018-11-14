@@ -1,3 +1,56 @@
+:root {
+  /* colors below are from https://flatuicolors.com/palette/gb */
+  /* red */
+  --nasturcian-flower: #e84118;
+  --harley-davidson-orange: #c23616;
+  /* bright blue */
+  --protoss-pylon: #00a8ff;
+  --vanadyl-blue: #0097e6;
+  /* mid-blue */
+  --seabrook: #487eb0;
+  --naval: #40739e;
+  /* light grey */
+  --lynx-white: #f5f6fa;
+  --hint-of-pensive: #dcdde1;
+  /* mid grey/blue */
+  --blueberry-soda: #7f8fa6;
+  --chain-chang-grey: #718093;
+  /* dark grey */
+  --blue-nights: #353b48;
+  --electromagnetic: #2f3640;
+}
+
 body {
-  color:red;
+  font-size:16px;
+  background-color: var(--hint-of-pensive);
+  color: var(--electromagnetic);
+}
+
+main {
+  margin-top:4em;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tweet-container {
+  margin-left: auto;
+  margin-right: auto;
+  position:relative;
+  background-color: white;
+  padding: 20px;
+  max-width:500px;
+}
+
+.speaker-pic-container {
+  margin-top:1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prof-pic {
+  border-radius: 50%;
+  width:20%;
+  display:block;
+  margin:auto;
 }

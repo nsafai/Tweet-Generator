@@ -1,13 +1,31 @@
 <!doctype html>
-<head>
-  <title>Tweet Generator</title>
-  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
 
+<head>
+  <title>Alice in Wonderland - Tweet Generator</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <!-- custom CSS -- needs to be imported last -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
+
 <body>
-  {% if markov_sentence %}
-    <h4>{{ markov_sentence }}</h4>
-  {% else %}
-    <h4>Hello there!</h4>
-  {% endif %}
+  <main class="container">
+    <div class="tweet-container">
+      {% if markov_sentence %}
+      <p>{{ markov_sentence }}</p>
+      {% else %}
+      <p>Hello there!</p>
+      {% endif %}
+    </div>
+    <div class="speaker-pic-container">
+      <img class="prof-pic" src="https://i.pinimg.com/originals/f0/51/2e/f0512e399f6d9c66f064d3bde3324bee.png" alt="">
+    </div>
+  </main>
+
+  <!-- JQuery for AJAX requests & bootstrap components -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
