@@ -1,0 +1,11 @@
+<!doctype html>
+<head>
+  <title>Tweet Generator</title>
+</head>
+<body>
+  {% if markov_sentence %}
+    <h4>{{ markov_sentence }}</h4>
+  {% else %}
+    <h4>Hello there!</h4>
+  {% endif %}
+</body>

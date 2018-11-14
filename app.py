@@ -4,7 +4,7 @@ import tokenizer # turn source file into a list of tokens
 import word_count # to get a histogram from source file
 import sample # to generate a random sample of __ words from a source file
 from markov_dictogram import MarkovDictogram
-from flask import Flask, request
+from flask import Flask, request, render_template
 app = Flask(__name__)
 
 # OPEN UP SOURCE FILE ONCE ONLY
@@ -19,7 +19,7 @@ markov_dictogram = MarkovDictogram(list_of_tokens)
 def index():
     num_words = request.args.get('num', default=17, type=int)
     markov_sentence = sample.generateMarkovSentence(word_histogram, markov_dictogram, num_words)
-    return markov_sentence
+    return render_template('home.html', markov_sentence=markov_sentence)
 
 if __name__ == '__main__':
     # code to run when file is executed
