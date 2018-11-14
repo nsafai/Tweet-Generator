@@ -1,4 +1,6 @@
+gunicorn==19.9.0
+python-dotenv==0.9.1
+pip3
 pip
 setuptools
 Flask
-python-dotenv

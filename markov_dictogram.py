@@ -33,9 +33,8 @@ class MarkovDictogram(Dictogram):
 
 if __name__ == '__main__':
     import sys
-    # arguments = sys.argv[1:]  # Exclude script name in first argument
 
-    # Test histogram on words in a classic book title
+    # Test markov dictogram
     fish_text = 'one fish two fish red fish blue fish'
     markov_histogram = MarkovDictogram(fish_text.split())
     print('MarkovDictogram: {}'.format(markov_histogram))
