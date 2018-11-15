@@ -18,10 +18,12 @@
   /* dark grey */
   --blue-nights: #353b48;
   --electromagnetic: #2f3640;
+  /* pink */
+  --cheshire-pink: #ae4292;
 }
 
 body {
-  font-size:16px;
+  font-size:20px;
   background-color: var(--hint-of-pensive);
   color: var(--electromagnetic);
 }
@@ -33,17 +35,8 @@ main {
   flex-direction: column;
 }
 
-.tweet-container {
-  margin-left: auto;
-  margin-right: auto;
-  position:relative;
-  background-color: white;
-  padding: 20px;
-  max-width:500px;
-}
-
 .speaker-pic-container {
-  margin-top:1em;
+  margin-bottom:2em;
   margin-left: auto;
   margin-right: auto;
 }
@@ -53,4 +46,42 @@ main {
   width:20%;
   display:block;
   margin:auto;
+}
+
+.tweet-container {
+  margin-left: auto;
+  margin-right: auto;
+  position:relative;
+  background-color: white;
+  padding: 20px;
+  max-width:500px;
+}
+
+.tweet-container:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-bottom: 10px solid white;
+  border-top: 10px solid transparent;
+  border-left: 10px solid white;
+  border-right: 10px solid transparent;
+  top: -15px;
+  left: 50%;
+  /* top: 6px; */
+}
+
+.button-container {
+  margin-top:1em;
+}
+
+.pink-btn {
+  background-color: var(--cheshire-pink);
+  color:white;
+  border:none;
+}
+
+.pink-btn:hover, .pink-btn:active {
+  background-color:white;
+  color: var(--cheshire-pink);
 }

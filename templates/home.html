@@ -14,6 +14,9 @@
 
 <body>
   <main class="container">
+    <div class="speaker-pic-container">
+      <img class="prof-pic" src="https://i.pinimg.com/originals/f0/51/2e/f0512e399f6d9c66f064d3bde3324bee.png" alt="">
+    </div>
     <div class="tweet-container">
       {% if markov_sentence %}
       <p>{{ markov_sentence }}</p>
@@ -21,8 +24,8 @@
       <p>Hello there!</p>
       {% endif %}
     </div>
-    <div class="speaker-pic-container">
-      <img class="prof-pic" src="https://i.pinimg.com/originals/f0/51/2e/f0512e399f6d9c66f064d3bde3324bee.png" alt="">
+    <div class="text-center button-container">
+      <a href="/"><button type="button" class="btn btn-light pink-btn">Give me more advice!</button></a>
     </div>
   </main>
 

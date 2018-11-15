@@ -42,7 +42,8 @@ def generateMarkovSentence(word_histogram, markov_dictogram, num_words):
     return clean_sentence
 
 def capitalizeAndPunctuate(sentence):
-    clean_sentence = ' '.join(sentence).capitalize() + str(".")
+    sentence[0] = sentence[0].capitalize() # capitalize 1st word
+    clean_sentence = ' '.join(sentence) + str(".")
     return clean_sentence
 
 def wordFrequencyTester(sentence):
@@ -65,11 +66,11 @@ if __name__ == '__main__':
     list_of_tokens = tokenizer.listOfTokens(content)
     word_histogram = word_count.histogramDict(list_of_tokens)
     sentence = generateSentence(word_histogram, num_words)
-    print(sentence)
+    # print(sentence)
     test_dict = wordFrequencyTester(sentence)
-    print(test_dict)
+    # print(test_dict)
     markov_dictogram = MarkovDictogram(list_of_tokens)
-    print(markov_dictogram)
+    # print(markov_dictogram)
     markov_sentence = generateMarkovSentence(word_histogram, markov_dictogram, num_words)
     print(markov_sentence)
-    print
+    # print

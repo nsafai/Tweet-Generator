@@ -5,7 +5,7 @@ import sys # for command line args
 import cleanup # clean up source text
 
 def listOfTokens(content):
-    list_of_tokens = re.split('\W+', content) # replaces not (^) word characters with an empty string
+    list_of_tokens = re.split(' ', content) # replaces not (^) word characters with an empty string
     list_of_tokens.pop() # trim any empty words (last word of list seems to always be empty)
     return list_of_tokens
 
