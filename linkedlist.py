@@ -111,12 +111,12 @@ class LinkedList(object):
 
         while curr_node is not None: # ll isn't empty & curr_node not out of range
             if curr_node.data == item: # curr_node is same as item
-                if self.head == curr_node: # 1st node is a match
-                    self.head = curr_node.next
+                if self.head == curr_node:
+                    self.head = curr_node.next # re-assign head
                 else: # 2nd node (or later) is a match
                     prev_node.next = curr_node.next
-                if self.tail == curr_node: # tail node is a match
-                    self.tail = prev_node
+                if self.tail == curr_node:
+                    self.tail = prev_node # re-assign tail
                 curr_node = None # delete data inside curr_node in all situations
                 return
             else: # curr_node is NOT same as item
@@ -124,6 +124,16 @@ class LinkedList(object):
                 curr_node = curr_node.next # to iterate through the list
 
         raise ValueError('Item not found: {}'.format(item)) # never found item
+
+def replace(self, orig_value, new_value):
+        # walk through ll until finding orig_value. If found, replace with new_value
+        node = self.head
+        while node is not None: # ll isn't empty & node not out of range
+            if node.data == orig_value:
+                node.data = new_value
+            else: # keep looking
+                node = node.next
+        raise ValueError('Replacement target not found: {}'.format(target))
 
 
 def test_linked_list():
