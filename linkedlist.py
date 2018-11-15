@@ -80,8 +80,8 @@ class LinkedList(object):
         new_node = Node(item)
         new_node.next = self.head
         self.head = new_node
-        if self.tail is None: # linkedlist only has 1 item
-            self.tail = new_node # since linkedlist only 1 item, it is the tail
+        if self.tail is None: # linkedlist was empty before prepend
+            self.tail = new_node # since linkedlist only has 1 item, it is the tail
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -89,6 +89,14 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
+        node = self.head
+        while node is not None:
+            if quality(node.data) is True:
+                return node.data
+            else:
+                node = node.next # reassign variable to iterate through the list
+        return None # item satisfying quality never found
+
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -98,6 +106,24 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
+        prev_node = None
+        curr_node = self.head
+
+        while curr_node is not None: # ll isn't empty & curr_node not out of range
+            if curr_node.data == item: # curr_node is same as item
+                if self.head == curr_node: # 1st node is a match
+                    self.head = curr_node.next
+                else: # 2nd node (or later) is a match
+                    prev_node.next = curr_node.next
+                if self.tail == curr_node: # tail node is a match
+                    self.tail = prev_node
+                curr_node = None # delete data inside curr_node in all situations
+                return
+            else: # curr_node is NOT same as item
+                prev_node = curr_node # keep track of previous node before moving on
+                curr_node = curr_node.next # to iterate through the list
+
+        raise ValueError('Item not found: {}'.format(item)) # never found item
 
 
 def test_linked_list():
