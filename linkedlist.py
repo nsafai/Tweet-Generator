@@ -55,7 +55,7 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
         node_count = 0
-        for node in self.items():
+        for item in self.items():
             node_count += 1
         return node_count
 
@@ -65,10 +65,11 @@ class LinkedList(object):
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
         new_node = Node(item)
-        if self.head is None: # linkedlist is empty
+        if self.is_empty(): # linkedlist is empty
             self.head = new_node
             self.tail = new_node # since linkedlist has 1 item, it is also tail
         else: # linkedlist is not empty
+            assert self.tail is not None
             self.tail.next = new_node # point previous tail's 'next' to new_node
             self.tail = new_node # set tail to new_node
 
