@@ -28,17 +28,23 @@ class HashTable(object):
         """Return a list of all keys in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
         # Collect all keys in each bucket
-        all_keys = []
+        list_of_keys = []
         for bucket in self.buckets:
             for key, value in bucket.items():
-                all_keys.append(key)
-        return all_keys
+                list_of_keys.append(key)
+        return list_of_keys
 
     def values(self):
         """Return a list of all values in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Collect all values in each bucket
+        list_of_values = []
+        # Loop through all buckets
+        for bucket in self.buckets:
+        # Collect all values in each bucket
+            for key, value in bucket.items():
+                list_of_values.append(value)
+        return list_of_values
+
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
@@ -107,11 +113,17 @@ class HashTable(object):
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, delete entry associated with given key
-        # TODO: Otherwise, raise error to tell user delete failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        # Find bucket where given key belongs
+        bucket_index = self._bucket_index(key)
+        bucket = self.buckets[bucket_index]
+        key_value_node = bucket.find(lambda item: item[0] == key)
+        # Check if key-value entry exists in bucket
+        if key_value_node is None:
+        # If not found, raise error to tell user delete failed
+            raise KeyError('Key not found: {}'.format(key))
+        else:
+            # Otherwise, delete entry associated with given key
+            bucket.delete(key_value_node)
 
 
 def test_hash_table():
