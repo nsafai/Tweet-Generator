@@ -8,6 +8,7 @@ class HashTable(object):
     def __init__(self, init_size=8):
         """Initialize this hash table with the given initial size."""
         # Create a new list (used as fixed-size array) of empty linked lists
+        self.num_of_values = 0
         self.buckets = [LinkedList() for _ in range(init_size)]
 
     def __str__(self):
@@ -58,13 +59,14 @@ class HashTable(object):
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(???) Why and under what conditions?"""
-        total_key_values = 0
-        # Loop through all buckets
-        for bucket in self.buckets:
-        # Count number of key-value entries in each bucket
-            for key_value in bucket.items():
-                total_key_values += 1
-        return total_key_values
+        # total_key_values = 0
+        # # Loop through all buckets
+        # for bucket in self.buckets:
+        # # Count number of key-value entries in each bucket
+        #     for key_value in bucket.items():
+        #         total_key_values += 1
+        # return total_key_values
+        return self.num_of_values
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
@@ -107,8 +109,11 @@ class HashTable(object):
         # If found, delete old value
         if key_value_node is not None:
             bucket.delete(key_value_node)
-        # Regardless if found, insert given key-value entry into bucket
-        bucket.append((key, value))
+            bucket.append((key, value))
+        else:
+            # doesn't exist yet, insert given key-value entry into bucket
+            bucket.append((key, value))
+            self.num_of_values += 1
 
 
 
@@ -126,6 +131,7 @@ class HashTable(object):
         else:
             # Otherwise, delete entry associated with given key
             bucket.delete(key_value_node)
+            self.num_of_values -= 1
 
 
 def test_hash_table():
