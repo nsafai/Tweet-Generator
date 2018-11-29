@@ -17,6 +17,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
+        self.list_length = 0
         # Append given items
         if items is not None:
             for item in items:
@@ -54,10 +55,11 @@ class LinkedList(object):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
-        node_count = 0
-        for item in self.items():
-            node_count += 1
-        return node_count
+        # node_count = 0
+        # for item in self.items():
+        #     node_count += 1
+        # return node_count
+        return self.list_length
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -72,6 +74,7 @@ class LinkedList(object):
             assert self.tail is not None
             self.tail.next = new_node # point previous tail's 'next' to new_node
             self.tail = new_node # set tail to new_node
+        self.list_length += 1
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -83,6 +86,7 @@ class LinkedList(object):
         self.head = new_node
         if self.tail is None: # linkedlist was empty before prepend
             self.tail = new_node # since linkedlist only has 1 item, it is the tail
+        self.list_length += 1
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -119,6 +123,7 @@ class LinkedList(object):
                 if self.tail == curr_node:
                     self.tail = prev_node # re-assign tail
                 curr_node = None # delete data inside curr_node in all situations
+                self.list_length -= 1
                 return
             else: # curr_node is NOT same as item
                 prev_node = curr_node # keep track of previous node before moving on
