@@ -126,7 +126,7 @@ class LinkedList(object):
 
         raise ValueError('Item not found: {}'.format(item)) # never found item
 
-def replace(self, orig_value, new_value):
+    def replace(self, orig_value, new_value):
         # walk through ll until finding orig_value. If found, replace with new_value
         node = self.head
         while node is not None: # ll isn't empty & node not out of range
@@ -134,7 +134,7 @@ def replace(self, orig_value, new_value):
                 node.data = new_value
             else: # keep looking
                 node = node.next
-        raise ValueError('Replacement target not found: {}'.format(target))
+        raise ValueError('Replacement target not found: {}'.format(orig_value))
 
 
 def test_linked_list():
