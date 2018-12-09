@@ -44,6 +44,33 @@ def print_histogram(word_list):
         print('{!r} occurs {} times'.format(word, freq))
     print()
 
+def timeit_test():
+    import timeit
+    import sample
+
+    def list_of_words(length):
+        dict_words = '/usr/share/dict/words'
+        words_str  = open(dict_words, 'r').read()
+        all_words  = words_str.split("\n")
+        return all_words[0:length]
+
+    hundred_words       = list_of_words(100)
+    ten_thousand_words  = list_of_words(10000)
+
+    hundred_hgram       = Dictogram(hundred_words)
+    ten_thousand_hgram  = Dictogram(hundred_words)
+
+    hundred_search      = hundred_words[-1]
+    ten_thousand_search = ten_thousand_words[-1]
+
+    stmt  = "count('{}', hundred_hgram)".format(hundred_search)
+    setup = "from __main__ import count, hundred_hgram"
+    timer = timeit.Timer(stmt, setup='pass')
+    iterations = 10000
+
+    result = timer.timeit(number=iterations)
+    print("count time for 10000-word histogram: " + str(result))
+
 
 def main():
     import sys
@@ -62,6 +89,8 @@ def main():
         woodchuck_text = ('how much wood would a wood chuck chuck'
                           ' if a wood chuck could chuck wood')
         print_histogram(woodchuck_text.split())
+        timeit_test() # performance benchmarking
+
 
 
 if __name__ == '__main__':
