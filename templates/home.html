@@ -17,6 +17,7 @@
 
 <body>
 
+  <!-- NAV TABS -->
   <div class="tabs">
     <button class="alice-tab tablink" onclick="openPage('alice', this, 'var(--bg-purple)')" id="defaultOpen">
       <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
@@ -29,8 +30,8 @@
 
   <main class="container">
 
+    <!-- MAIN BODY CONTENT -->
     <div class="content">
-
       <div id="tab-content" class="tabcontent">
         <div class="speaker-pic-container">
           <img id='prof-pic' class="prof-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
@@ -51,22 +52,19 @@
           </a>
         </div>
       </div>
-
     </div>
 
+    <!-- FOOTER -->
     <footer>
-
       <p class="copyright-text">This was built with ♥ by
         <a href="http://github.com/nsafai" class="copyright-text">Nicolai Safai</a>
       </p>
-
     </footer>
 
   </main>
 
   <!-- JQuery for AJAX requests & bootstrap components -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
   <!-- SCRIPT FOR TABS -->
   <script src="{{url_for('static', filename='tabs.js')}}"></script>
 
