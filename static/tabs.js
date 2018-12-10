@@ -16,6 +16,7 @@ function openPage(pageName, elmnt, color) {
   permatitle = document.getElementById('perma-title');
   ctabtn = document.getElementById('cta-btn');
   profpic = document.getElementById('prof-pic');
+  newquotebtn = document.getElementById('new-quote-btn');
 
   if (pageName == 'alice') {
     permatitle.classList.add("alice-title");
@@ -27,6 +28,7 @@ function openPage(pageName, elmnt, color) {
     ctabtn.innerHTML = 'Go Down the Rabbit-Hole';
 
     profpic.src = '/static/img/cheshire-face.png';
+    newquotebtn.href = "/";
 
   } else if (pageName == 'potter') {
     permatitle.classList.add("potter-title");
@@ -38,6 +40,9 @@ function openPage(pageName, elmnt, color) {
     ctabtn.innerHTML = 'Reveal Your Secrets';
 
     profpic.src = '/static/img/hp-face.png';
+    newquotebtn.href = "/potter";
+
+    $.get( "/potter" );
   }
 }
 // Get the element with id="defaultOpen" and click on it

@@ -54,18 +54,17 @@ potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
 @app.route('/')
 def index():
     num_words = request.args.get('num', default=40, type=int)
-    theme = request.args.get('theme', default='alice')
-    if theme == 'potter':
-        markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
-    # if theme == 'beatles':
-    #     markov_sentence = sample.generateNthOrderMarkovSentence(beatles_dictogram, num_words, beatles_markov_order)
-    # elif theme == 'eminem':
-    #     markov_sentence = sample.generateNthOrderMarkovSentence(eminem_dictogram, num_words, eminem_markov_order)
-    else:
-        markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
+    markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
 
-    return render_template('home.html', markov_sentence=markov_sentence)
+    return render_template('home.html', markov_sentence=markov_sentence, default='alice')
 
+@app.route('/potter')
+def show_potter_quote():
+    num_words = request.args.get('num', default=40, type=int)
+    markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
+    print(markov_sentence)
+    # change inner HTML of id='markov-sentence'
+    return render_template('home.html', markov_sentence=markov_sentence, default='potter')
 
 # ---RUN CODE---
 if __name__ == '__main__':
