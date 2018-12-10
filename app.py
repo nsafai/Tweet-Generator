@@ -8,7 +8,7 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 # OPEN UP SOURCE FILE ONCE ONLY
-markov_order = 3
+markov_order = 4
 source_text = 'txt-files/alice.txt'
 content = cleanup.readFile(source_text)
 list_of_tokens = tokenizer.listOfTokens(content)
@@ -18,7 +18,7 @@ markov_dictogram = MarkovDictogram(list_of_tokens, markov_order)
 # --- ROUTES ---
 @app.route('/')
 def index():
-    num_words = request.args.get('num', default=40, type=int)
+    num_words = request.args.get('num', default=60, type=int)
     # markov_sentence = sample.generateMarkovSentence(word_histogram, markov_dictogram, num_words)
     markov_sentence = sample.generateNthOrderMarkovSentence(markov_dictogram, num_words, markov_order)
     return render_template('home.html', markov_sentence=markov_sentence)
