@@ -7,6 +7,7 @@ import random
 import time
 from markov_dictogram import MarkovDictogram
 
+
 def generateWord(histogram_dict):
     total_number_tokens = sum(histogram_dict.values())
     random_chance = random.randint(1, total_number_tokens)
@@ -18,6 +19,7 @@ def generateWord(histogram_dict):
             return key
         else:
             continue
+
 
 def generateSentence(histogram, num_words):
     start_time = time.time()
@@ -31,6 +33,7 @@ def generateSentence(histogram, num_words):
     clean_sentence = capitalizeAndPunctuate(sentence)
     return clean_sentence
 
+
 def generateMarkovSentence(word_histogram, markov_dictogram, num_words):
     sentence = []
 
@@ -41,28 +44,30 @@ def generateMarkovSentence(word_histogram, markov_dictogram, num_words):
     clean_sentence = capitalizeAndPunctuate(sentence)
     return clean_sentence
 
+
 def generateNthOrderMarkovSentence(markov_dictogram, num_words, markov_order):
     sentence = []
 
-    next_words = random.choice(list(markov_dictogram.keys())) # adds that x-factor (=
+    next_words = random.choice(list(markov_dictogram.keys())) # adds that x-factor :)
 
     starting_word = next_words[0]
     sentence.append(starting_word)
 
     while len(sentence) <= num_words:
         clean_next_words = next_words[1:markov_order]
-        sentence.append(clean_next_words)
+        for word_index in range(markov_order-1):
+            sentence.append(clean_next_words[word_index])
         next_words = generateWord(markov_dictogram[next_words])
-    # clean_sentence = capitalizeAndPunctuate(sentence)
-    # return clean_sentence
-    return sentence
-
+    clean_sentence = capitalizeAndPunctuate(sentence)
+    return clean_sentence
 
 
 def capitalizeAndPunctuate(sentence):
     sentence[0] = sentence[0].capitalize() # capitalize 1st word
-    clean_sentence = ' '.join(sentence) + str(".")
+    # clean_sentence = ' '.join(sentence) + str(".")
+    clean_sentence = ' '.join(map(str, sentence)) + str(".")
     return clean_sentence
+
 
 def wordFrequencyTester(sentence):
     test_dict = {}
@@ -91,4 +96,3 @@ if __name__ == '__main__':
     # print(markov_dictogram)
     markov_sentence = generateMarkovSentence(word_histogram, markov_dictogram, num_words)
     print(markov_sentence)
-    # print
