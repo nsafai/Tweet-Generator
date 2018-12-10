@@ -16,57 +16,72 @@
 </head>
 
 <body>
+
+  <div class="tabs">
+    <button class="alice-tab tablink" onclick="openPage('Alice', this, 'var(--bg-pink)')" id="defaultOpen">
+      <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
+    </button>
+
+    <button class="potter-tab tablink" onclick="openPage('Potter', this, 'var(--electromagnetic)')">
+      <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
+    </button>
+  </div>
+
   <main class="container">
-    <div class="tabs">
-      <button class="tablink" onclick="openPage('Alice', this, 'var(--bg-pink)')" id="defaultOpen">
-        <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
-      </button>
-      <a class="tablink" onclick="openPage('Potter', this, 'var(--electromagnetic)')">
-        <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
-      </button>
+
+    <div class="content">
+
+      <div id="Alice" class="tabcontent">
+        <div class="speaker-pic-container">
+          <img class="prof-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
+          <h3 class="alice-title">We'Re aLL mAd HeRe</h3>
+        </div>
+        <div class="tweet-container">
+          {% if markov_sentence %}
+          <p>{{ markov_sentence }}</p>
+          {% else %}
+          <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
+          {% endif %}
+        </div>
+        <div class="button-container">
+          <a href="/">
+            <button type="button" class="btn btn-light pink-btn">
+              Go Down the Rabbit-Hole
+            </button>
+          </a>
+        </div>
+      </div>
+
+      <div id="Potter" class="tabcontent">
+        <div class="speaker-pic-container">
+          <img class="prof-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
+          <h3 class="potter-title">I solemnly swear...</h3>
+        </div>
+        <div class="tweet-container">
+          {% if markov_sentence %}
+          <p>{{ markov_sentence }}</p>
+          {% else %}
+          <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
+          {% endif %}
+        </div>
+        <div class="button-container">
+          <a href="/?theme=potter">
+            <button type="button" class="btn btn-light potter-button">
+              Reveal your secrets!
+            </button>
+          </a>
+        </div>
+      </div>
+
     </div>
 
-    <div id="Alice" class="tabcontent">
-      <div class="speaker-pic-container">
-        <img class="prof-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
-        <h3 class="alice-title">We'Re aLL mAd HeRe</h3>
-      </div>
-      <div class="tweet-container">
-        {% if markov_sentence %}
-        <p>{{ markov_sentence }}</p>
-        {% else %}
-        <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
-        {% endif %}
-      </div>
-      <div class="text-center button-container">
-        <a href="/">
-          <button type="button" class="btn btn-light pink-btn">
-            Go Down the Rabbit-Hole
-          </button>
-        </a>
-      </div>
-    </div>
+    <footer>
 
-    <div id="Potter" class="tabcontent">
-      <div class="speaker-pic-container">
-        <img class="prof-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
-        <h3 class="potter-title">I solemnly swear...</h3>
-      </div>
-      <div class="tweet-container">
-        {% if markov_sentence %}
-        <p>{{ markov_sentence }}</p>
-        {% else %}
-        <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
-        {% endif %}
-      </div>
-      <div class="text-center button-container">
-        <a href="/">
-          <button type="button" class="btn btn-light blue-button">
-            Reveal your secrets!
-          </button>
-        </a>
-      </div>
-    </div>
+      <p class="copyright-text">This was built with ♥ by
+        <a href="http://github.com/nsafai" class="copyright-text">Nicolai Safai</a>
+      </p>
+
+    </footer>
 
   </main>
 
@@ -83,6 +98,7 @@
       }
       document.getElementById(pageName).style.display = "block";
       elmnt.style.backgroundColor = color;
+      document.body.style.backgroundColor = color;
 
     }
     // Get the element with id="defaultOpen" and click on it
