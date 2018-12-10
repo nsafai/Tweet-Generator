@@ -24,7 +24,7 @@ def index():
     return render_template('home.html', markov_sentence=markov_sentence)
 
 if __name__ == '__main__':
-    # code to run when file is executed
+    # code to run when file is executed 'flask run'
     app.debug = True
     app.run(host='0.0.0.0' , port=5000)
     # -- TO DEBUG BY RUNNING SCRIPT, UNCOMMENT BELOW --
