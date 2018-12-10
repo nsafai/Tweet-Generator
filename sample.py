@@ -41,6 +41,24 @@ def generateMarkovSentence(word_histogram, markov_dictogram, num_words):
     clean_sentence = capitalizeAndPunctuate(sentence)
     return clean_sentence
 
+def generateNthOrderMarkovSentence(markov_dictogram, num_words, markov_order):
+    sentence = []
+
+    next_words = random.choice(list(markov_dictogram.keys())) # adds that x-factor (=
+
+    starting_word = next_words[0]
+    sentence.append(starting_word)
+
+    while len(sentence) <= num_words:
+        clean_next_words = next_words[1:markov_order]
+        sentence.append(clean_next_words)
+        next_words = generateWord(markov_dictogram[next_words])
+    # clean_sentence = capitalizeAndPunctuate(sentence)
+    # return clean_sentence
+    return sentence
+
+
+
 def capitalizeAndPunctuate(sentence):
     sentence[0] = sentence[0].capitalize() # capitalize 1st word
     clean_sentence = ' '.join(sentence) + str(".")
