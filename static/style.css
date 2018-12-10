@@ -15,12 +15,14 @@
   /* mid grey/blue */
   --blueberry-soda: #7f8fa6;
   --chain-chang-grey: #718093;
+  --simple-mid-grey: #939393;
   /* dark grey */
   --blue-nights: #353b48;
   --electromagnetic: #2f3640;
   /* pink */
   --cheshire-pink: #ae4292;
   --bg-pink: #c4aac1;
+  --bg-purple: #3f2643;
 }
 
 /***** GENERAL *****/
@@ -61,7 +63,7 @@ button:focus {
 .prof-pic {
   border-radius: 50%;
   /* width: 15%; */
-  max-height:139px;
+  max-height:5em;
   display: block;
   margin-left: 1.5em;
   margin-right: 1.5em;
@@ -69,6 +71,7 @@ button:focus {
 
 .alice-title {
   font-family: 'Spicy Rice', cursive;
+  font-weight:400;
 }
 
 .potter-title {
@@ -102,32 +105,32 @@ button:focus {
 
 /***** BUTTON *****/
 .button-container {
-  margin-top: 1.5em;
+  margin-top: 2em;
   display: flex;
   justify-content: center;
 }
 
-.pink-btn {
+.alice-btn {
   background-color: var(--cheshire-pink);
   color: white;
   border: none;
   padding: 0.5em 1em;
 }
 
-.pink-btn:hover, .pink-btn:active {
+.alice-btn:hover, .alice-btn:active {
   background-color: white;
   color: var(--cheshire-pink);
   font-weight: bold;
 }
 
-.potter-button {
+.potter-btn {
   background-color: var(--harley-davidson-orange);
   color: white;
   border: none;
   padding: 0.5em 1em;
 }
 
-.potter-button:hover, .blue-button:active {
+.potter-btn:hover, .blue-btn:active {
   background-color: white;
   color: var(--harley-davidson-orange);
   font-weight: bold;
@@ -142,8 +145,7 @@ button:focus {
   max-height: 100px;
 }
 
-/***** TABS *****/
-/* Style tab links */
+/***** TAB LINKS *****/
 .tablink {
   float: left;
   border: none;
@@ -154,31 +156,24 @@ button:focus {
 }
 
 .alice-tab {
-  background-color: var(--bg-pink);
+  background-color: var(--bg-purple);
+  font-weight: 300;
 }
 
 .potter-tab {
   background-color: var(--electromagnetic);
 }
 
-/* Style the tab content (and add height:100% for full page content) */
+/***** TAB CONTENT *****/
 .tabcontent {
   display: none;
-  padding: 100px 20px;
+  padding: 5em 1em 5em 1em;
   height: 100%;
+  color:var(--lynx-white);
 }
 
 .tab-pic {
   max-height:50px;
-}
-
-#Alice {
-  background-color: var(--bg-pink);
-}
-
-#Potter {
-  background-color: var(--electromagnetic);
-  color:white;
 }
 
 /***** FOOTER *****/
@@ -192,6 +187,19 @@ footer {
 }
 
 .copyright-text {
-  color:var(--blueberry-soda);
+  color:var(--simple-mid-grey);
   font-size: 0.9em;
+}
+
+/***** MOBILE ONLY *****/
+@media only screen and (max-width: 600px) {
+  footer {
+    position:relative;
+  }
+
+  .tabcontent {
+    display: none;
+    padding: 2.5em 0.5em 2.5em 0.5em;
+    height: 100%;
+  }
 }

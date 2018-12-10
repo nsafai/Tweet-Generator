@@ -18,11 +18,11 @@
 <body>
 
   <div class="tabs">
-    <button class="alice-tab tablink" onclick="openPage('Alice', this, 'var(--bg-pink)')" id="defaultOpen">
+    <button class="alice-tab tablink" onclick="openPage('alice', this, 'var(--bg-purple)')" id="defaultOpen">
       <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
     </button>
 
-    <button class="potter-tab tablink" onclick="openPage('Potter', this, 'var(--electromagnetic)')">
+    <button class="potter-tab tablink" onclick="openPage('potter', this, 'var(--electromagnetic)')">
       <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
     </button>
   </div>
@@ -31,10 +31,10 @@
 
     <div class="content">
 
-      <div id="Alice" class="tabcontent">
+      <div id="tab-content" class="tabcontent">
         <div class="speaker-pic-container">
-          <img class="prof-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
-          <h3 class="alice-title">We'Re aLL mAd HeRe</h3>
+          <img id='prof-pic' class="prof-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
+          <h3  id="perma-title" class=""></h3>
         </div>
         <div class="tweet-container">
           {% if markov_sentence %}
@@ -45,29 +45,8 @@
         </div>
         <div class="button-container">
           <a href="/">
-            <button type="button" class="btn btn-light pink-btn">
+            <button type="button" id="cta-btn" class="">
               Go Down the Rabbit-Hole
-            </button>
-          </a>
-        </div>
-      </div>
-
-      <div id="Potter" class="tabcontent">
-        <div class="speaker-pic-container">
-          <img class="prof-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
-          <h3 class="potter-title">I solemnly swear...</h3>
-        </div>
-        <div class="tweet-container">
-          {% if markov_sentence %}
-          <p>{{ markov_sentence }}</p>
-          {% else %}
-          <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
-          {% endif %}
-        </div>
-        <div class="button-container">
-          <a href="/?theme=potter">
-            <button type="button" class="btn btn-light potter-button">
-              Reveal your secrets!
             </button>
           </a>
         </div>
@@ -85,6 +64,10 @@
 
   </main>
 
+  <!-- JQuery for AJAX requests & bootstrap components -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- SCRIPT FOR TABS -->
   <script>
     function openPage(pageName, elmnt, color) {
       var i, tabcontent, tablinks;
@@ -96,15 +79,40 @@
       for (i = 0; i < tablinks.length; i++) {
         tablinks[i].style.backgroundColor = "";
       }
-      document.getElementById(pageName).style.display = "block";
+      document.getElementById("tab-content").style.display = "block";
       elmnt.style.backgroundColor = color;
       document.body.style.backgroundColor = color;
 
+      // UPDATE CONTENT AND STYLING
+      permatitle = document.getElementById('perma-title');
+      ctabtn = document.getElementById('cta-btn');
+      profpic = document.getElementById('prof-pic');
+
+      if (pageName == 'alice') {
+        permatitle.classList.add("alice-title");
+        permatitle.classList.remove("potter-title");
+        permatitle.innerHTML = 'We\'Re aLL mAd HeRe';
+
+        ctabtn.classList.add('alice-btn');
+        ctabtn.classList.remove('potter-btn');
+        ctabtn.innerHTML = 'Go Down the Rabbit-Hole';
+
+        profpic.src = '{{url_for('static', filename='img/cheshire-face.png')}}'
+
+      } else if (pageName == 'potter') {
+        permatitle.classList.add("potter-title");
+        permatitle.classList.remove("alice-title");
+        permatitle.innerHTML = 'I solemnly swear I\'m Up to No Good';
+
+        ctabtn.classList.add('potter-btn');
+        ctabtn.classList.remove('alice-btn');
+        ctabtn.innerHTML = 'Reveal Your Secrets';
+
+        profpic.src = '{{url_for('static', filename='img/hp-face.png')}}'
+      }
     }
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
   </script>
 
-  <!-- JQuery for AJAX requests & bootstrap components -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
