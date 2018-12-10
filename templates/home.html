@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css?family=Raleway|Spicy+Rice" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -15,25 +17,77 @@
 
 <body>
   <main class="container">
-    <div class="speaker-pic-container">
-      <img class="prof-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
-      <h3 class="speaker-permaquote">We'Re aLL mAd HeRe</h3>
+    <div class="tabs">
+      <button class="tablink" onclick="openPage('Alice', this, 'var(--bg-pink)')" id="defaultOpen">
+        <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
+      </button>
+      <a class="tablink" onclick="openPage('Potter', this, 'var(--electromagnetic)')">
+        <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
+      </button>
     </div>
-    <div class="tweet-container">
-      {% if markov_sentence %}
-      <p>{{ markov_sentence }}</p>
-      {% else %}
-      <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
-      {% endif %}
+
+    <div id="Alice" class="tabcontent">
+      <div class="speaker-pic-container">
+        <img class="prof-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
+        <h3 class="alice-title">We'Re aLL mAd HeRe</h3>
+      </div>
+      <div class="tweet-container">
+        {% if markov_sentence %}
+        <p>{{ markov_sentence }}</p>
+        {% else %}
+        <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
+        {% endif %}
+      </div>
+      <div class="text-center button-container">
+        <a href="/">
+          <button type="button" class="btn btn-light pink-btn">
+            Go Down the Rabbit-Hole
+          </button>
+        </a>
+      </div>
     </div>
-    <div class="text-center button-container">
-      <a href="/">
-        <button type="button" class="btn btn-light pink-btn">
-          Go Down the Rabbit-Hole
-        </button>
-      </a>
+
+    <div id="Potter" class="tabcontent">
+      <div class="speaker-pic-container">
+        <img class="prof-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
+        <h3 class="potter-title">I solemnly swear...</h3>
+      </div>
+      <div class="tweet-container">
+        {% if markov_sentence %}
+        <p>{{ markov_sentence }}</p>
+        {% else %}
+        <p>Hello there! Hm... Something isn't working correctly. There should be generated text here.</p>
+        {% endif %}
+      </div>
+      <div class="text-center button-container">
+        <a href="/">
+          <button type="button" class="btn btn-light blue-button">
+            Reveal your secrets!
+          </button>
+        </a>
+      </div>
     </div>
+
   </main>
+
+  <script>
+    function openPage(pageName, elmnt, color) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      elmnt.style.backgroundColor = color;
+
+    }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+  </script>
 
   <!-- JQuery for AJAX requests & bootstrap components -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

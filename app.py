@@ -27,22 +27,40 @@ alice_content = cleanup.readFile(alice_corpus_url)
 alice_tokens = tokenizer.listOfTokens(alice_content)
 alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
 
+# ---IMPORT HPOTTER MOR---
+potter_markov_order = 3
+potter_corpus_url = 'txt-files/hpmor.txt'
+potter_content = cleanup.readFile(potter_corpus_url)
+potter_tokens = tokenizer.listOfTokens(potter_content)
+potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
+
 # -- IMPORT BEATLES LYRICS --
-beatles_markov_order = 3
-beatles_corpus_url = 'beatles_lyrics.json'
-beatles_content = cleanup.readAndCleanGeniusLyrics(beatles_corpus_url)
-beatles_tokens = tokenizer.listOfTokens(beatles_content)
-beatles_dictogram =  MarkovDictogram(beatles_tokens, beatles_markov_order)
+# beatles_markov_order = 3
+# beatles_corpus_url = 'txt-files/beatles_lyrics.json'
+# beatles_content = cleanup.readAndCleanGeniusLyrics(beatles_corpus_url)
+# beatles_tokens = tokenizer.listOfTokens(beatles_content)
+# beatles_dictogram =  MarkovDictogram(beatles_tokens, beatles_markov_order)
 
-
+# -- IMPORT eminem LYRICS --
+# eminem_markov_order = 3
+# eminem_corpus_url = 'txt-files/eminem_lyrics.json'
+# print('eminem corpus url: ' + eminem_corpus_url)
+# eminem_content = cleanup.readAndCleanGeniusLyrics(eminem_corpus_url)
+# print('eminem content: ' + eminem_content)
+# eminem_tokens = tokenizer.listOfTokens(eminem_content)
+# eminem_dictogram = MarkovDictogram(eminem_tokens, eminem_markov_order)
 
 # ---ROUTES---
 @app.route('/')
 def index():
     num_words = request.args.get('num', default=40, type=int)
     theme = request.args.get('theme', default='alice')
-    if theme == 'beatles':
-        markov_sentence = sample.generateNthOrderMarkovSentence(beatles_markov_order, num_words, beatles_markov_order)
+    if theme == 'potter':
+        markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
+    # if theme == 'beatles':
+    #     markov_sentence = sample.generateNthOrderMarkovSentence(beatles_dictogram, num_words, beatles_markov_order)
+    # elif theme == 'eminem':
+    #     markov_sentence = sample.generateNthOrderMarkovSentence(eminem_dictogram, num_words, eminem_markov_order)
     else:
         markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
 

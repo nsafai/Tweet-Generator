@@ -44,8 +44,8 @@ See the initial (more rudimentary) versions of the building blocks in the /old_s
 - [x] **9. Hash Table**
 - [x] **10. Performance Analysis**
 - [x] **11. Markov Chains Revisited**
-- [ ] **12. Creating a Corpus** (WIP)
-- [ ] **13. Parsing Text and Clean Up**
+- [x] **12. Creating a Corpus** (WIP)
+- [x] **13. Parsing Text and Clean Up**  (WIP)
 - [ ] **14. Tokenization**
 - [ ] **15. Time to Tweet**
 

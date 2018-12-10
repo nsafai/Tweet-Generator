@@ -20,6 +20,7 @@ def readAndCleanGeniusLyrics(url):
 
     # -- GENIUS LYRICS CLEANUP --
     lyrics_stage_1 = re.findall('\"lyrics\": \".*?\"', raw_lyrics_content) # grab content after "lyrics" key in JSON file
+    print(lyrics_stage_1)
     lyrics_stage_2 = re.sub(r'\"lyrics\"', ' ', str(lyrics_stage_1))
     lyrics_stage_3 = re.sub(r'\\n', '\n', str(lyrics_stage_2)) # remove "\n"
     lyrics_stage_4 = re.sub(r'\\', ' ', str(lyrics_stage_3)) # remove "\"
@@ -32,6 +33,8 @@ def readAndCleanGeniusLyrics(url):
     lyrics_stage_11 = re.sub(r'\d', "", str(lyrics_stage_10))
     # print(str(lyrics_stage_8))
     file.close()
+
+    print(str(lyrics_stage_11))
 
     return str(lyrics_stage_11)
 

@@ -20,24 +20,37 @@
   --electromagnetic: #2f3640;
   /* pink */
   --cheshire-pink: #ae4292;
+  --bg-pink: #c4aac1;
+}
+
+/***** GENERAL *****/
+* {
+  box-sizing: border-box
 }
 
 body {
-  font-size:20px;
+  font-size: 20px;
   background-color: var(--hint-of-pensive);
   color: var(--electromagnetic);
   font-family: 'Raleway', Helvetica, sans-serif;
+  height: 100%;
+  margin: 0;
 }
 
 main {
-  margin-top:5em;
-  display:flex;
+  margin-top: 2em;
+  display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
+button:focus {
+  outline: none !important;
+}
+
+/***** HEADER *****/
 .speaker-pic-container {
-  margin-bottom:2em;
+  margin-bottom: 2em;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -47,22 +60,30 @@ main {
 
 .prof-pic {
   border-radius: 50%;
-  width:20%;
-  display:block;
-  margin-right:1em;
+  /* width: 15%; */
+  max-height:139px;
+  display: block;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
 }
 
-.speaker-permaquote {
+.alice-title {
   font-family: 'Spicy Rice', cursive;
 }
 
+.potter-title {
+  font-family: 'Lobster', cursive;
+}
+
+/***** TWEET CONTAINER *****/
 .tweet-container {
+  color: var(--electromagnetic);
   margin-left: auto;
   margin-right: auto;
-  position:relative;
+  position: relative;
   background-color: white;
   padding: 20px;
-  max-width:500px;
+  max-width: 500px;
 }
 
 .tweet-container:before {
@@ -79,19 +100,74 @@ main {
   /* top: 6px; */
 }
 
+/***** BUTTON *****/
 .button-container {
-  margin-top:1.5em;
+  margin-top: 1.5em;
 }
 
 .pink-btn {
   background-color: var(--cheshire-pink);
-  color:white;
-  border:none;
-  padding:0.5em 1em;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
 }
 
 .pink-btn:hover, .pink-btn:active {
-  background-color:white;
+  background-color: white;
   color: var(--cheshire-pink);
   font-weight: bold;
+}
+
+.blue-button {
+  background-color: var(--blueberry-soda);
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+}
+
+.blue-button:hover, .blue-button:active {
+  background-color: white;
+  color: var(--blueberry-soda);
+  font-weight: bold;
+}
+
+/***** OTHER OPTIONS *****/
+.other-option-container {
+  display: flex;
+}
+
+.other-options-pic {
+  max-height: 100px;
+}
+
+/***** TABS *****/
+/* Style tab links */
+.tablink {
+  float: left;
+  border: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 50%;
+  background-color: var(--hint-of-pensive);
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+.tab-pic {
+  max-height:50px;
+}
+
+#Alice {
+  background-color: var(--bg-pink);
+}
+
+#Potter {
+  background-color: var(--electromagnetic);
+  color:white;
 }
