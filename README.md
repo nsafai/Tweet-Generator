@@ -14,7 +14,7 @@ Building a tweet generator with the modest goal of passing the Turing test (or m
 - run `flask run`
 
 # Technologies
-Flask, gunicorn, Python 3.0 std libraries (incl. `hash()`, `random`)
+Flask, gunicorn, & Python 3.7 libraries (incl. `hash()`, `random`)
 
 ## What's in here?
 ### Modules
