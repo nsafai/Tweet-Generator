@@ -7,8 +7,9 @@ def readFile(url):
     file = open(url, 'r')
     content = file.read()
     content_wo_contractions = decontracted(content)
-    content_wo_symbols = re.sub(r'[^\w]', ' ', content_wo_contractions);
-    content_wo_mult_spaces = re.sub(r"\s+"," ", content_wo_contractions, flags = re.I)
+    # content_wo_symbols = re.sub(r'[^\w]', ' ', content_wo_contractions);
+    content_wo_symbols = re.sub(r'[^\w\s?!\-,.:\'\"]‘’“”', '', content_wo_contractions)
+    content_wo_mult_spaces = re.sub(r"\s+"," ", content_wo_symbols, flags = re.I)
     # clean_content_lower = content_wo_mult_spaces.lower()
     clean_content = re.sub(r" i ", " I ", content_wo_mult_spaces)
     file.close()
