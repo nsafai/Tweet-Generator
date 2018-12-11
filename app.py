@@ -20,7 +20,7 @@ potter_imported = False
 @app.route('/')
 @app.route('/alice')
 def index():
-    if alice_imported = False:
+    if alice_imported == False:
         # ---IMPORT ALICE IN WONDERLAND ONLY ONCE---
         alice_markov_order = 2
         alice_corpus_url = 'txt-files/alice.txt'
@@ -35,7 +35,7 @@ def index():
 
 @app.route('/potter')
 def show_potter_quote():
-    if potter_imported = False:
+    if potter_imported == False:
         # ---IMPORT HPOTTER MOR ONLY ONCE---
         potter_markov_order = 3
         potter_corpus_url = 'txt-files/hpmor.txt'
