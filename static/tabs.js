@@ -38,7 +38,7 @@ function openPage(pageName, elmnt, color) {
   else if (pageName == 'potter') {
     perma_title.classList.add("potter-title");
     perma_title.classList.remove("alice-title");
-    perma_title.innerHTML = 'I solemnly swear I\'m Up to No Good';
+    perma_title.innerHTML = 'I Solemnly Swear I\'m Up to No Good';
 
     cta_btn.classList.add('potter-btn');
     cta_btn.classList.remove('alice-btn');

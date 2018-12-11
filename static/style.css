@@ -31,7 +31,7 @@
 }
 
 a:hover {
-  color: white;
+  color: var(--lynx-white);
   text-decoration: none;
 }
 
@@ -89,7 +89,7 @@ button:focus {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  background-color: white;
+  background-color: var(--lynx-white);
   padding: 20px;
   max-width: 500px;
 }
@@ -99,9 +99,9 @@ button:focus {
   width: 0px;
   height: 0px;
   position: absolute;
-  border-bottom: 10px solid white;
+  border-bottom: 10px solid var(--lynx-white);
   border-top: 10px solid transparent;
-  border-left: 10px solid white;
+  border-left: 10px solid var(--lynx-white);
   border-right: 10px solid transparent;
   top: -15px;
   left: 25%;
@@ -110,34 +110,37 @@ button:focus {
 
 /***** BUTTON *****/
 .button-container {
-  margin-top: 2em;
+  margin-top: 3em;
   display: flex;
   justify-content: center;
 }
 
 .alice-btn {
+  border:none;
   background-color: var(--cheshire-pink);
-  color: white;
+  color: var(--lynx-white);
   border: none;
   padding: 0.5em 1em;
 }
 
 .alice-btn:hover, .alice-btn:active {
-  background-color: white;
+  background-color: var(--lynx-white);
   color: var(--cheshire-pink);
+  border: 1px solid color: var(--lynx-white);;
   font-weight: bold;
 }
 
 .potter-btn {
+  border:none;
   background-color: var(--harley-davidson-orange);
   color: white;
-  border: none;
   padding: 0.5em 1em;
 }
 
 .potter-btn:hover, .blue-btn:active {
   background-color: white;
   color: var(--harley-davidson-orange);
+  border: 1px solid color: var(--harley-davidson-orange);;
   font-weight: bold;
 }
 
@@ -202,9 +205,14 @@ footer {
     position:relative;
   }
 
+  .button-container {
+    margin-top:2em;
+  }
+
   .tabcontent {
     display: none;
     padding: 2.5em 0.5em 2.5em 0.5em;
     height: 100%;
   }
+
 }

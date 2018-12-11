@@ -22,7 +22,7 @@ alice_tokens = tokenizer.listOfTokens(alice_content)
 alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
 
 # ---IMPORT HPOTTER MOR---
-potter_markov_order = 3
+potter_markov_order = 2
 potter_corpus_url = 'txt-files/hpmor.txt'
 potter_content = cleanup.readFile(potter_corpus_url)
 potter_tokens = tokenizer.listOfTokens(potter_content)
@@ -32,14 +32,14 @@ potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
 @app.route('/')
 @app.route('/alice')
 def index():
-    num_words = request.args.get('num', default=20, type=int)
+    num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
 
     return render_template('home.html', markov_sentence=markov_sentence, default='alice')
 
 @app.route('/potter')
 def show_potter_quote():
-    num_words = request.args.get('num', default=20, type=int)
+    num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
 
     return render_template('home.html', markov_sentence=markov_sentence, default='potter')
