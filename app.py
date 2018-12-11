@@ -35,7 +35,7 @@ def generate_alice_dictogram(alice_markov_order=2):
 # ---IMPORT HPOTTER MOR---
 def generate_potter_dictogram(potter_markov_order=2):
 
-    potter_corpus_url = 'txt-files/hpmor.txt'
+    potter_corpus_url = 'txt-files/shorter-hpmor.txt'
 
     start_time = time.time()
 
