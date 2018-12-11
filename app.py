@@ -52,6 +52,7 @@ def generate_potter_dictogram(potter_markov_order=2):
     start_time = time.time()
 
     potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
+    # print(potter_dictogram)
 
     run_time = time.time() - start_time
     print('time to dictogram potter: ' + str(run_time))
@@ -60,7 +61,7 @@ def generate_potter_dictogram(potter_markov_order=2):
 
 alice_markov_order = 2
 alice_dictogram = generate_alice_dictogram(alice_markov_order)
-potter_markov_order = 2
+potter_markov_order = 3
 potter_dictogram = generate_potter_dictogram(potter_markov_order)
 
 # ---ROUTES---
