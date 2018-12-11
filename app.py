@@ -8,12 +8,10 @@ from markov_dictogram import MarkovDictogram
 from flask import Flask, request, render_template
 app = Flask(__name__)
 # ---dotenv setup---
-import os
-from dotenv import load_dotenv
-BASEDIR = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(BASEDIR, '.env'))
-
-
+# import os
+# from dotenv import load_dotenv
+# BASEDIR = os.path.abspath(os.path.dirname(__file__))
+# load_dotenv(os.path.join(BASEDIR, '.env'))
 
 alice_imported = False
 potter_imported = False
