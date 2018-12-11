@@ -24,7 +24,7 @@ alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
 # print(alice_dictogram)
 
 # ---IMPORT HPOTTER MOR---
-potter_markov_order = 3
+potter_markov_order = 2
 potter_corpus_url = 'txt-files/hpmor.txt'
 start_time = time.time()
 potter_content = cleanup.readFile(potter_corpus_url)
