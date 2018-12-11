@@ -16,31 +16,28 @@ class MarkovDictogram(Dictogram):
 
             for word_index in range(word_list_length):
                 first_words = []
-                next_words = []
-
                 for n in range(markov_order):
                     first_words.append(word_list[word_index + n])
-                    next_words.append(word_list[word_index + n + (markov_order-1)])
 
+                next_word = word_list[word_index + n + 1] # word that immediately follows first_words
                 first_words_tuple = tuple(first_words)
-                next_words_tuple = tuple(next_words)
 
-                self.add_count(first_words_tuple, next_words_tuple)
+                self.add_count(first_words_tuple, next_word)
 
-    def add_count(self, first_words, next_words):
-        """Keeps track of how many times next_words follow first_words"""
-        if first_words in self: # word is already in MarkovDictogram
-            if next_words in self[first_words]: # alrdy seen next_word after word
-                self[first_words][next_words] += 1 # word dictogram at index = [next_word]
+    def add_count(self, first_words, next_word):
+        """Keeps track of how many times next_word follow first_words"""
+        if first_words in self: # first_words is already in MarkovDictogram
+            if next_word in self[first_words]: # alrdy seen next_word after first_words
+                self[first_words][next_word] += 1 # word dictogram at index[first_words]
             else:
-                self[first_words][next_words] = 1 # 1st time seeing next_word after word
-        else: # never seen word before
-            self[first_words] = {next_words:1}
+                self[first_words][next_word] = 1 # 1st time seeing next_word after first_words
+        else: # never seen first_word before
+            self[first_words] = {next_word:1}
 
-    def frequency(self, first_words, next_words):
+    def frequency(self, first_words, next_word):
         """Returns # times next_word follow first_words, or 0 if never."""
-        if next_words in self[first_words]:
-            return self[first_words][next_words]
+        if next_word in self[first_words]:
+            return self[first_words][next_word]
         else:
             return 0
 

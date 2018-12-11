@@ -49,20 +49,31 @@ def generateNthOrderMarkovSentence(markov_dictogram, num_words, markov_order):
     start_time = time.time()
     sentence = []
 
-    next_words = random.choice(list(markov_dictogram.keys())) # adds that x-factor :)
+    starting_words = random.choice(list(markov_dictogram.keys())) # adds that x-factor :)
     run_time = time.time() - start_time
     print('time to choose 1st words: ' + str(run_time))
 
+    print(starting_words)
 
-    starting_word = next_words[0]
-    # append first word just once because we will be trimming leading word moving forward
-    sentence.append(starting_word)
+    for word in list(starting_words):
+        sentence.append(word)
+    print(sentence)
+
+    # sentence.append(starting_words)
 
     while len(sentence) <= num_words:
-        clean_next_words = next_words[1:markov_order]
-        for word_index in range(markov_order-1):
-            sentence.append(clean_next_words[word_index])
-        next_words = generateWord(markov_dictogram[next_words])
+        most_recent_words = sentence[-markov_order:]
+        print(most_recent_words)
+        most_recent_words_tuple = tuple(most_recent_words[0:])
+        print(most_recent_words_tuple)
+        next_word = generateWord(markov_dictogram[most_recent_words_tuple])
+        print(next_word)
+        sentence.append(next_word)
+        # clean_next_words = next_words[1:markov_order]
+        # for word_index in range(markov_order-1):
+        #     sentence.append(clean_next_words[word_index])
+
+        # next_words = generateWord(markov_dictogram[next_words]) # needs tuple next_words
     clean_sentence = capitalizeAndPunctuate(sentence)
     run_time = time.time() - start_time
     print('total run time to take a walk: ' + str(run_time))
