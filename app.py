@@ -16,11 +16,12 @@ app = Flask(__name__)
 
 
 # ---IMPORT ALICE IN WONDERLAND---
-alice_markov_order = 2
-alice_corpus_url = 'txt-files/alice.txt'
-alice_content = cleanup.readFile(alice_corpus_url)
-alice_tokens = tokenizer.listOfTokens(alice_content)
-alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
+def generate_potter_dictogram():
+    alice_markov_order = 2
+    alice_corpus_url = 'txt-files/alice.txt'
+    alice_content = cleanup.readFile(alice_corpus_url)
+    alice_tokens = tokenizer.listOfTokens(alice_content)
+    alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
 # print(alice_dictogram)
 
 # ---IMPORT HPOTTER MOR---
@@ -46,7 +47,6 @@ def generate_potter_dictogram():
 
     run_time = time.time() - start_time
     print('time to dictogram: ' + str(run_time))
-    # print(potter_dictogram)
 
     return potter_dictogram
 
