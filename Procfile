@@ -1,2 +1,1 @@
-
-web: gunicorn --bind 0.0.0.0:3000 main-api:app
+web: gunicorn -w 4 app:app
