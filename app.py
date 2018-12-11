@@ -7,17 +7,11 @@ import sample # to generate a random sample of __ words from a source file
 from markov_dictogram import MarkovDictogram
 from flask import Flask, request, render_template
 app = Flask(__name__)
-
 # ---dotenv setup---
 import os
 from dotenv import load_dotenv
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(BASEDIR, '.env'))
-
-# ---genius API setup---
-import lyricsgenius as genius
-genius_client_token = os.getenv("GENIUS_CLIENT_ACCESS_TOKEN")
-api = genius.Genius(genius_client_token)
 
 
 # ---IMPORT ALICE IN WONDERLAND---
