@@ -46,11 +46,16 @@ def generateMarkovSentence(word_histogram, markov_dictogram, num_words):
 
 
 def generateNthOrderMarkovSentence(markov_dictogram, num_words, markov_order):
+    start_time = time.time()
     sentence = []
 
     next_words = random.choice(list(markov_dictogram.keys())) # adds that x-factor :)
+    run_time = time.time() - start_time
+    print('time to choose 1st words: ' + str(run_time))
+
 
     starting_word = next_words[0]
+    # append first word just once because we will be trimming leading word moving forward
     sentence.append(starting_word)
 
     while len(sentence) <= num_words:
@@ -59,6 +64,8 @@ def generateNthOrderMarkovSentence(markov_dictogram, num_words, markov_order):
             sentence.append(clean_next_words[word_index])
         next_words = generateWord(markov_dictogram[next_words])
     clean_sentence = capitalizeAndPunctuate(sentence)
+    run_time = time.time() - start_time
+    print('total run time to take a walk: ' + str(run_time))
     return clean_sentence
 
 

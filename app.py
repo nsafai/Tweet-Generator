@@ -6,6 +6,7 @@ import word_count # to get a histogram from source file
 import sample # to generate a random sample of __ words from a source file
 from markov_dictogram import MarkovDictogram
 from flask import Flask, request, render_template
+import time
 app = Flask(__name__)
 # ---dotenv setup---
 # import os
@@ -20,13 +21,24 @@ alice_corpus_url = 'txt-files/alice.txt'
 alice_content = cleanup.readFile(alice_corpus_url)
 alice_tokens = tokenizer.listOfTokens(alice_content)
 alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
+# print(alice_dictogram)
 
 # ---IMPORT HPOTTER MOR---
 potter_markov_order = 2
 potter_corpus_url = 'txt-files/hpmor.txt'
+start_time = time.time()
 potter_content = cleanup.readFile(potter_corpus_url)
+run_time = time.time() - start_time
+print('time to clean potter file: ' + str(run_time))
+start_time = time.time()
 potter_tokens = tokenizer.listOfTokens(potter_content)
+run_time = time.time() - start_time
+print('time to tokenize: ' + str(run_time))
+start_time = time.time()
 potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
+run_time = time.time() - start_time
+print('time to dictogram: ' + str(run_time))
+# print(potter_dictogram)
 
 # ---ROUTES---
 @app.route('/')

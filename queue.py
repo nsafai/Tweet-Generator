@@ -3,6 +3,7 @@ from linkedlist import LinkedList
 class Queue(LinkedList):
 
     def __init__(self, max_size, items=None):
+        '''a class that will hold a fixed number of items (for performance).'''
         LinkedList.__init__(self, items=items)
         self.max_size = max_size
 
@@ -26,6 +27,7 @@ class Queue(LinkedList):
         self.append(item)
         # keep track of list size
         self.size += 1
+
 
 def test_queue():
     # credit to github.com/lvreynoso for the tests below:
