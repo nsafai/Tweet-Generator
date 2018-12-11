@@ -32,14 +32,14 @@ potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
 @app.route('/')
 @app.route('/alice')
 def index():
-    num_words = request.args.get('num', default=40, type=int)
+    num_words = request.args.get('num', default=20, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
 
     return render_template('home.html', markov_sentence=markov_sentence, default='alice')
 
 @app.route('/potter')
 def show_potter_quote():
-    num_words = request.args.get('num', default=40, type=int)
+    num_words = request.args.get('num', default=20, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
 
     return render_template('home.html', markov_sentence=markov_sentence, default='potter')
