@@ -34,24 +34,9 @@ potter_content = cleanup.readFile(potter_corpus_url)
 potter_tokens = tokenizer.listOfTokens(potter_content)
 potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
 
-# -- IMPORT BEATLES LYRICS --
-# beatles_markov_order = 3
-# beatles_corpus_url = 'txt-files/beatles_lyrics.json'
-# beatles_content = cleanup.readAndCleanGeniusLyrics(beatles_corpus_url)
-# beatles_tokens = tokenizer.listOfTokens(beatles_content)
-# beatles_dictogram =  MarkovDictogram(beatles_tokens, beatles_markov_order)
-
-# -- IMPORT eminem LYRICS --
-# eminem_markov_order = 3
-# eminem_corpus_url = 'txt-files/eminem_lyrics.json'
-# print('eminem corpus url: ' + eminem_corpus_url)
-# eminem_content = cleanup.readAndCleanGeniusLyrics(eminem_corpus_url)
-# print('eminem content: ' + eminem_content)
-# eminem_tokens = tokenizer.listOfTokens(eminem_content)
-# eminem_dictogram = MarkovDictogram(eminem_tokens, eminem_markov_order)
-
 # ---ROUTES---
 @app.route('/')
+@app.route('/alice')
 def index():
     num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
@@ -62,8 +47,7 @@ def index():
 def show_potter_quote():
     num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
-    print(markov_sentence)
-    # change inner HTML of id='markov-sentence'
+
     return render_template('home.html', markov_sentence=markov_sentence, default='potter')
 
 # ---RUN CODE---

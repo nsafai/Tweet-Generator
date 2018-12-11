@@ -13,37 +13,54 @@ function openPage(pageName, elmnt, color) {
   document.body.style.backgroundColor = color;
 
   // UPDATE CONTENT AND STYLING
-  permatitle = document.getElementById('perma-title');
-  ctabtn = document.getElementById('cta-btn');
-  profpic = document.getElementById('prof-pic');
-  newquotebtn = document.getElementById('new-quote-btn');
+  perma_title = document.getElementById('perma-title');
+  cta_btn = document.getElementById('cta-btn');
+  prof_pic = document.getElementById('prof-pic');
+  // new_quote_btn = document.getElementById('new-quote-btn');
 
   if (pageName == 'alice') {
-    permatitle.classList.add("alice-title");
-    permatitle.classList.remove("potter-title");
-    permatitle.innerHTML = 'We\'Re aLL mAd HeRe';
+    perma_title.classList.add("alice-title");
+    perma_title.classList.remove("potter-title");
+    perma_title.innerHTML = 'We\'Re aLL mAd HeRe';
 
-    ctabtn.classList.add('alice-btn');
-    ctabtn.classList.remove('potter-btn');
-    ctabtn.innerHTML = 'Go Down the Rabbit-Hole';
+    cta_btn.classList.add('alice-btn');
+    cta_btn.classList.remove('potter-btn');
+    cta_btn.innerHTML = 'Go Down the Rabbit-Hole';
+    cta_btn.setAttribute( "onClick", "updateSentence(\"/\");");
 
-    profpic.src = '/static/img/cheshire-face.png';
-    newquotebtn.href = "/";
+    prof_pic.src = '/static/img/cheshire-face.png';
+    // new_quote_btn.href = "/";
 
-  } else if (pageName == 'potter') {
-    permatitle.classList.add("potter-title");
-    permatitle.classList.remove("alice-title");
-    permatitle.innerHTML = 'I solemnly swear I\'m Up to No Good';
+    // GET: new alice sentence
+    updateSentence("/");
+  }
 
-    ctabtn.classList.add('potter-btn');
-    ctabtn.classList.remove('alice-btn');
-    ctabtn.innerHTML = 'Reveal Your Secrets';
+  else if (pageName == 'potter') {
+    perma_title.classList.add("potter-title");
+    perma_title.classList.remove("alice-title");
+    perma_title.innerHTML = 'I solemnly swear I\'m Up to No Good';
 
-    profpic.src = '/static/img/hp-face.png';
-    newquotebtn.href = "/potter";
+    cta_btn.classList.add('potter-btn');
+    cta_btn.classList.remove('alice-btn');
+    cta_btn.innerHTML = 'Reveal Your Secrets';
+    cta_btn.setAttribute( "onClick", "updateSentence(\"/potter\");");
 
-    $.get( "/potter" );
+    prof_pic.src = '/static/img/hp-face.png';
+    // new_quote_btn.href = "/potter";
+
+    // GET: new potter sentence
+    updateSentence("/potter");
   }
 }
+
+function updateSentence(url_route) {
+  $.get(url_route, function( data ) {
+    let new_sentence_parent_div = $("#markov-sentence", $(data))
+    let new_sentence = new_sentence_parent_div[0].innerHTML
+    markov_sentence = document.getElementById('markov-sentence');
+    markov_sentence.innerHTML = new_sentence;
+  });
+}
+
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();

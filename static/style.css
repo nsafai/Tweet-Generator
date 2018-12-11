@@ -30,6 +30,11 @@
   box-sizing: border-box
 }
 
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 body {
   font-size: 20px;
   /* background-color: var(--hint-of-pensive); */
