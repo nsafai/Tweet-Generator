@@ -13,21 +13,25 @@ app = Flask(__name__)
 # BASEDIR = os.path.abspath(os.path.dirname(__file__))
 # load_dotenv(os.path.join(BASEDIR, '.env'))
 
-alice_imported = False
-potter_imported = False
+
+# ---IMPORT ALICE IN WONDERLAND---
+alice_markov_order = 2
+alice_corpus_url = 'txt-files/alice.txt'
+alice_content = cleanup.readFile(alice_corpus_url)
+alice_tokens = tokenizer.listOfTokens(alice_content)
+alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
+
+# ---IMPORT HPOTTER MOR---
+potter_markov_order = 3
+potter_corpus_url = 'txt-files/hpmor.txt'
+potter_content = cleanup.readFile(potter_corpus_url)
+potter_tokens = tokenizer.listOfTokens(potter_content)
+potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
 
 # ---ROUTES---
 @app.route('/')
 @app.route('/alice')
 def index():
-    if alice_imported == False:
-        # ---IMPORT ALICE IN WONDERLAND ONLY ONCE---
-        alice_markov_order = 2
-        alice_corpus_url = 'txt-files/alice.txt'
-        alice_content = cleanup.readFile(alice_corpus_url)
-        alice_tokens = tokenizer.listOfTokens(alice_content)
-        alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
-        alice_imported = True
     num_words = request.args.get('num', default=20, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
 
@@ -35,14 +39,6 @@ def index():
 
 @app.route('/potter')
 def show_potter_quote():
-    if potter_imported == False:
-        # ---IMPORT HPOTTER MOR ONLY ONCE---
-        potter_markov_order = 3
-        potter_corpus_url = 'txt-files/hpmor.txt'
-        potter_content = cleanup.readFile(potter_corpus_url)
-        potter_tokens = tokenizer.listOfTokens(potter_content)
-        potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
-        potter_imported = True
     num_words = request.args.get('num', default=20, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
 
