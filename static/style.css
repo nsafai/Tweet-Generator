@@ -115,8 +115,8 @@ button:focus {
   justify-content: center;
 }
 
-#new-quote-btn {
-  cursor: pointer; 
+#cta-btn {
+  cursor: pointer;
 }
 
 .alice-btn {

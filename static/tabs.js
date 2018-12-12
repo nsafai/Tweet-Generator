@@ -16,7 +16,6 @@ function openPage(pageName, elmnt, color) {
   perma_title = document.getElementById('perma-title');
   cta_btn = document.getElementById('cta-btn');
   prof_pic = document.getElementById('prof-pic');
-  // new_quote_btn = document.getElementById('new-quote-btn');
 
   if (pageName == 'alice') {
     perma_title.classList.add("alice-title");
@@ -29,7 +28,6 @@ function openPage(pageName, elmnt, color) {
     cta_btn.setAttribute( "onClick", "updateSentence(\"/\");");
 
     prof_pic.src = '/static/img/cheshire-face.png';
-    // new_quote_btn.href = "/";
 
     // GET: new alice sentence
     updateSentence("/");
@@ -46,7 +44,6 @@ function openPage(pageName, elmnt, color) {
     cta_btn.setAttribute( "onClick", "updateSentence(\"/potter\");");
 
     prof_pic.src = '/static/img/hp-face.png';
-    // new_quote_btn.href = "/potter";
 
     // GET: new potter sentence
     updateSentence("/potter");
