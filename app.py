@@ -1,12 +1,13 @@
 import re
 import sys # for command line args
+import time # for performance bechmarking
+import pickle # To save markov_dict into a pickle file.
 import cleanup # to cleanup source file
 import tokenizer # turn source file into a list of tokens
 import word_count # to get a histogram from source file
 import sample # to generate a random sample of __ words from a source file
-from markov_dictogram import MarkovDictogram
-from flask import Flask, request, render_template
-import time
+from markov_dictogram import MarkovDictogram # for custom markov chain
+from flask import Flask, request, render_template # for webapp
 app = Flask(__name__)
 # ---dotenv setup---
 # import os
@@ -14,6 +15,10 @@ app = Flask(__name__)
 # BASEDIR = os.path.abspath(os.path.dirname(__file__))
 # load_dotenv(os.path.join(BASEDIR, '.env'))
 
+# ---SAVE DATA INTO A PICKLE FILE---
+def save_to_pickle(data, filename):
+    # data can be any type, name must be a string
+    pickle.dump(data, open( filename, "wb" ))
 
 # ---IMPORT ALICE IN WONDERLAND---
 def generate_alice_dictogram(alice_markov_order=2):
@@ -25,6 +30,7 @@ def generate_alice_dictogram(alice_markov_order=2):
     alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
     run_time = time.time() - start_time
     print('time to dictogram alice: ' + str(run_time))
+    save_to_pickle(alice_dictogram, 'alice_dictogram.p')
     return alice_dictogram
 # print(alice_dictogram)
 
@@ -38,28 +44,40 @@ def generate_potter_dictogram(potter_markov_order=2):
     potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
     run_time = time.time() - start_time
     print('time to dictogram potter: ' + str(run_time))
+    save_to_pickle(potter_dictogram, 'potter_dictogram.p')
     return potter_dictogram
-
-alice_markov_order = 2
-alice_dictogram = generate_alice_dictogram(alice_markov_order)
-potter_markov_order = 3
-potter_dictogram = generate_potter_dictogram(potter_markov_order)
 
 # ---ROUTES---
 @app.route('/')
 @app.route('/alice')
 def index():
     num_words = request.args.get('num', default=40, type=int)
-    markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
 
-    return render_template('home.html', markov_sentence=markov_sentence, default='alice')
+    try:
+        alice_dictogram = pickle.load(open('alice_dictogram.p', 'rb' ))
+        print('successfully loaded alice_dictogram from pickle')
+    except:
+        print('alice dictogram does not exist!')
+        alice_markov_order = 2
+        alice_dictogram = generate_alice_dictogram(alice_markov_order)
+    else:
+        markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
+        return render_template('home.html', markov_sentence=markov_sentence, default='alice')
 
 @app.route('/potter')
 def show_potter_quote():
     num_words = request.args.get('num', default=40, type=int)
-    markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
 
-    return render_template('home.html', markov_sentence=markov_sentence, default='potter')
+    try:
+        potter_dictogram = pickle.load(open('potter_dictogram.p', 'rb' ))
+        print('successfully loaded potter_dictogram from pickle')
+    except:
+        print('alice dictogram does not exist!')
+        potter_markov_order = 3
+        potter_dictogram = generate_potter_dictogram(potter_markov_order)
+    else:
+        markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
+        return render_template('home.html', markov_sentence=markov_sentence, default='potter')
 
 # ---RUN CODE---
 if __name__ == '__main__':
