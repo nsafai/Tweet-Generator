@@ -115,6 +115,10 @@ button:focus {
   justify-content: center;
 }
 
+#new-quote-btn {
+  cursor: pointer; 
+}
+
 .alice-btn {
   border:none;
   background-color: var(--cheshire-pink);
