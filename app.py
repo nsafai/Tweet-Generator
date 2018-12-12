@@ -21,7 +21,7 @@ def save_to_pickle(data, filename):
     pickle.dump(data, open( filename, "wb" ))
 
 # ---IMPORT ALICE IN WONDERLAND---
-def generate_alice_dictogram(alice_markov_order=2):
+def generate_alice_dictogram(markov_order):
 
     alice_corpus_url = 'txt-files/alice.txt'
     alice_content = cleanup.readFile(alice_corpus_url)
@@ -32,19 +32,36 @@ def generate_alice_dictogram(alice_markov_order=2):
     print('time to dictogram alice: ' + str(run_time))
     save_to_pickle(alice_dictogram, 'alice_dictogram.p')
     return alice_dictogram
-# print(alice_dictogram)
 
 # ---IMPORT HPOTTER MOR---
-def generate_potter_dictogram(potter_markov_order=2):
+def generate_potter_dictogram(markov_order):
 
     potter_corpus_url = 'txt-files/shorter-hpmor.txt'
     potter_content = cleanup.readFile(potter_corpus_url)
     potter_tokens = tokenizer.listOfTokens(potter_content)
     start_time = time.time()
-    potter_dictogram = MarkovDictogram(potter_tokens, potter_markov_order)
+    potter_dictogram = MarkovDictogram(potter_tokens, markov_order)
     run_time = time.time() - start_time
     print('time to dictogram potter: ' + str(run_time))
     save_to_pickle(potter_dictogram, 'potter_dictogram.p')
+    return potter_dictogram
+
+def grab_alice_dictogram(markov_order):
+    try:
+        alice_dictogram = pickle.load(open('alice_dictogram.p', 'rb' ))
+        print('successfully loaded alice_dictogram from pickle')
+    except:
+        print('alice dictogram does not exist!')
+        alice_dictogram = generate_alice_dictogram(markov_order)
+    return alice_dictogram
+
+def grab_potter_dictogram(markov_order):
+    try:
+        potter_dictogram = pickle.load(open('potter_dictogram.p', 'rb' ))
+        print('successfully loaded potter_dictogram from pickle')
+    except:
+        print('alice dictogram does not exist!')
+        potter_dictogram = generate_potter_dictogram(markov_order)
     return potter_dictogram
 
 # ---ROUTES---
@@ -52,32 +69,18 @@ def generate_potter_dictogram(potter_markov_order=2):
 @app.route('/alice')
 def index():
     num_words = request.args.get('num', default=40, type=int)
-
-    try:
-        alice_dictogram = pickle.load(open('alice_dictogram.p', 'rb' ))
-        print('successfully loaded alice_dictogram from pickle')
-    except:
-        print('alice dictogram does not exist!')
-        alice_markov_order = 2
-        alice_dictogram = generate_alice_dictogram(alice_markov_order)
-    else:
-        markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
-        return render_template('home.html', markov_sentence=markov_sentence, default='alice')
+    markov_order = 2
+    alice_dictogram = grab_alice_dictogram(markov_order)
+    markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, markov_order)
+    return render_template('home.html', markov_sentence=markov_sentence, default='alice')
 
 @app.route('/potter')
 def show_potter_quote():
     num_words = request.args.get('num', default=40, type=int)
-
-    try:
-        potter_dictogram = pickle.load(open('potter_dictogram.p', 'rb' ))
-        print('successfully loaded potter_dictogram from pickle')
-    except:
-        print('alice dictogram does not exist!')
-        potter_markov_order = 3
-        potter_dictogram = generate_potter_dictogram(potter_markov_order)
-    else:
-        markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
-        return render_template('home.html', markov_sentence=markov_sentence, default='potter')
+    markov_order = 3
+    potter_dictogram = grab_potter_dictogram(markov_order)
+    markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, markov_order)
+    return render_template('home.html', markov_sentence=markov_sentence, default='potter')
 
 # ---RUN CODE---
 if __name__ == '__main__':
