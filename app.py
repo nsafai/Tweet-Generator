@@ -20,32 +20,6 @@ def save_to_pickle(data, filename):
     # data can be any type, name must be a string
     pickle.dump(data, open( filename, "wb" ))
 
-# ---IMPORT ALICE IN WONDERLAND---
-# def generate_alice_dictogram(markov_order):
-#
-#     alice_corpus_url = 'txt-files/alice.txt'
-#     alice_content = cleanup.readFile(alice_corpus_url)
-#     alice_tokens = tokenizer.listOfTokens(alice_content)
-#     start_time = time.time()
-#     alice_dictogram = MarkovDictogram(alice_tokens, alice_markov_order)
-#     run_time = time.time() - start_time
-#     print('time to dictogram alice: ' + str(run_time))
-#     save_to_pickle(alice_dictogram, 'alice_dictogram.p')
-#     return alice_dictogram
-
-# ---IMPORT HPOTTER MOR---
-# def generate_potter_dictogram(markov_order):
-#
-#     potter_corpus_url = 'txt-files/shorter-hpmor.txt'
-#     potter_content = cleanup.readFile(potter_corpus_url)
-#     potter_tokens = tokenizer.listOfTokens(potter_content)
-#     start_time = time.time()
-#     potter_dictogram = MarkovDictogram(potter_tokens, markov_order)
-#     run_time = time.time() - start_time
-#     print('time to dictogram potter: ' + str(run_time))
-#     save_to_pickle(potter_dictogram, 'potter_dictogram.p')
-#     return potter_dictogram
-#
 def generate_dictogram(markov_order, pickle_url, corpus_url):
 
     corpus_content = cleanup.readFile(corpus_url)
