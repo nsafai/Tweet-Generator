@@ -178,7 +178,7 @@ button:focus {
 
 /***** TAB CONTENT *****/
 .tabcontent {
-  display: none;
+  display: block;
   padding: 5em 1em 5em 1em;
   height: 100%;
   color:var(--lynx-white);
@@ -214,7 +214,7 @@ footer {
   }
 
   .tabcontent {
-    display: none;
+    /* display: none; */
     padding: 2.5em 0.5em 2.5em 0.5em;
     height: 100%;
   }

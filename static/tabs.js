@@ -1,21 +1,14 @@
-function openPage(pageName, elmnt, color) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].style.backgroundColor = "";
-  }
-  document.getElementById("tab-content").style.display = "block";
-  elmnt.style.backgroundColor = color;
+function openPage(pageName, color) {
+  var i
+
+  // CHANGE COLOR BASED ON WHAT TAB WAS JUST CLICKED
   document.body.style.backgroundColor = color;
 
   // UPDATE CONTENT AND STYLING
   perma_title = document.getElementById('perma-title');
   cta_btn = document.getElementById('cta-btn');
   prof_pic = document.getElementById('prof-pic');
+  markov_sentence = document.getElementById('markov-sentence');
 
   if (pageName == 'alice') {
     perma_title.classList.add("alice-title");
@@ -29,6 +22,8 @@ function openPage(pageName, elmnt, color) {
 
     prof_pic.src = '/static/img/cheshire-face.png';
 
+    // clear sentence
+    markov_sentence.innerHTML = ''
     // GET: new alice sentence
     updateSentence("/");
   }
@@ -45,6 +40,8 @@ function openPage(pageName, elmnt, color) {
 
     prof_pic.src = '/static/img/hp-face.png';
 
+    // clear sentence
+    markov_sentence.innerHTML = ''
     // GET: new potter sentence
     updateSentence("/potter");
   }
