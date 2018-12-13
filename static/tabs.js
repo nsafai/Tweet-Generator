@@ -12,10 +12,12 @@ function openPage(pageName, color) {
   if (pageName == 'alice') {
     perma_title.classList.add("alice-title");
     perma_title.classList.remove("potter-title");
+    perma_title.classList.remove("bride-title");
     perma_title.innerHTML = 'We\'Re aLL mAd HeRe';
 
     cta_btn.classList.add('alice-btn');
     cta_btn.classList.remove('potter-btn');
+    cta_btn.classList.remove('bride-btn');
     cta_btn.innerHTML = 'Go Down the Rabbit-Hole';
     cta_btn.setAttribute( "onClick", "updateSentence(\"/\");");
 
@@ -30,10 +32,12 @@ function openPage(pageName, color) {
   else if (pageName == 'potter') {
     perma_title.classList.add("potter-title");
     perma_title.classList.remove("alice-title");
+    perma_title.classList.remove("bride-title");
     perma_title.innerHTML = 'I Solemnly Swear I\'m Up to No Good';
 
     cta_btn.classList.add('potter-btn');
     cta_btn.classList.remove('alice-btn');
+    cta_btn.classList.remove('bride-btn');
     cta_btn.innerHTML = 'Reveal Your Secrets';
     cta_btn.setAttribute( "onClick", "updateSentence(\"/potter\");");
 
@@ -43,6 +47,26 @@ function openPage(pageName, color) {
     markov_sentence.innerHTML = ''
     // GET: new potter sentence
     updateSentence("/potter");
+  }
+
+  else if (pageName == 'bride') {
+    perma_title.classList.add("bride-title");
+    perma_title.classList.remove("alice-title");
+    perma_title.classList.remove("potter-title");
+    perma_title.innerHTML = 'Mawage is wot bwings us togeder tooday.';
+
+    cta_btn.classList.add('bride-btn');
+    cta_btn.classList.remove('potter-btn');
+    cta_btn.classList.remove('alice-btn');
+    cta_btn.innerHTML = 'As you wish';
+    cta_btn.setAttribute( "onClick", "updateSentence(\"/bride\");");
+
+    prof_pic.src = '/static/img/pb-face.png';
+
+    // clear sentence
+    markov_sentence.innerHTML = ''
+    // GET: new princess of the bride sentence
+    updateSentence("/bride");
   }
 }
 

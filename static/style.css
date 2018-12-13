@@ -23,6 +23,10 @@
   --cheshire-pink: #ae4292;
   --bg-pink: #c4aac1;
   --bg-purple: #3f2643;
+  /* blue */
+  --mazarine-blue: #273c75;
+  /* yellow */
+  --nanohanacha-gold: #e1b12c;
 }
 
 /***** GENERAL *****/
@@ -74,6 +78,10 @@ button:focus {
   margin-right: 1.5em;
 }
 
+#perma-title {
+  font-size:1.8em;
+}
+
 .alice-title {
   font-family: 'Spicy Rice', cursive;
   font-weight:400;
@@ -81,6 +89,12 @@ button:focus {
 
 .potter-title {
   font-family: 'Lobster', cursive;
+}
+
+.bride-title {
+  font-family: 'Charmonman', cursive;
+  font-weight: 700;
+  color: var(--electromagnetic);
 }
 
 /***** TWEET CONTAINER *****/
@@ -117,14 +131,13 @@ button:focus {
 
 #cta-btn {
   cursor: pointer;
+  border:none;
+  padding: 0.5em 1em;
 }
 
 .alice-btn {
-  border:none;
   background-color: var(--cheshire-pink);
   color: var(--lynx-white);
-  border: none;
-  padding: 0.5em 1em;
 }
 
 .alice-btn:hover, .alice-btn:active {
@@ -135,16 +148,26 @@ button:focus {
 }
 
 .potter-btn {
-  border:none;
   background-color: var(--harley-davidson-orange);
   color: white;
-  padding: 0.5em 1em;
 }
 
 .potter-btn:hover, .blue-btn:active {
   background-color: white;
   color: var(--harley-davidson-orange);
   border: 1px solid color: var(--harley-davidson-orange);;
+  font-weight: bold;
+}
+
+.bride-btn {
+  background-color: var(--mazarine-blue);
+  color: white;
+}
+
+.bride-btn:hover, .bride-btn:active {
+  background-color: white;
+  color: var(--mazarine-blue);
+  border: 1px solid color: var(--mazarine-blue);
   font-weight: bold;
 }
 
@@ -164,7 +187,7 @@ button:focus {
   cursor: pointer;
   padding: 14px 16px;
   font-size: 17px;
-  width: 50%;
+  width: calc(100% / 3);
 }
 
 .alice-tab {
@@ -174,6 +197,10 @@ button:focus {
 
 .potter-tab {
   background-color: var(--electromagnetic);
+}
+
+.bride-tab {
+  background-color: var(--blueberry-soda);
 }
 
 /***** TAB CONTENT *****/

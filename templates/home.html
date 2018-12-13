@@ -20,8 +20,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://fonts.googleapis.com/css?family=Raleway|Spicy+Rice" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Spicy+Rice|Lobster|Almendra|Charm|Charmonman" rel="stylesheet">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -40,12 +39,28 @@
     <button class="potter-tab tablink" onclick="openPage('potter', 'var(--electromagnetic)')">
       <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
     </button>
+    <button class="bride-tab tablink" onclick="openPage('bride', 'var(--blueberry-soda)')">
+      <img class="tab-pic" src="{{url_for('static', filename='img/pb-face.png')}}" alt="">
+    </button>
     {% elif default|string() == 'potter' %}
     <button class="alice-tab tablink" onclick="openPage('alice', 'var(--bg-purple)')">
       <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
     </button>
     <button class="potter-tab tablink" onclick="openPage('potter', 'var(--electromagnetic)')" id="defaultOpen">
       <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
+    </button>
+    <button class="bride-tab tablink" onclick="openPage('bride', 'var(--blueberry-soda)')">
+      <img class="tab-pic" src="{{url_for('static', filename='img/pb-face.png')}}" alt="">
+    </button>
+    {% elif default|string() == 'bride' %}
+    <button class="alice-tab tablink" onclick="openPage('alice', 'var(--bg-purple)')">
+      <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
+    </button>
+    <button class="potter-tab tablink" onclick="openPage('potter', 'var(--electromagnetic)')">
+      <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
+    </button>
+    <button class="bride-tab tablink" onclick="openPage('bride', 'var(--blueberry-soda)')">
+      <img class="tab-pic" src="{{url_for('static', filename='img/pb-face.png')}}" alt="" id="defaultOpen">
     </button>
     {% endif %}
   </div>

@@ -24,11 +24,11 @@ def generate_dictogram(markov_order, pickle_url, corpus_url):
     corpus_content = cleanup.readFile(corpus_url)
     corpus_tokens = tokenizer.listOfTokens(corpus_content)
     start_time = time.time()
-    potter_dictogram = MarkovDictogram(corpus_tokens, markov_order)
+    dictogram = MarkovDictogram(corpus_tokens, markov_order)
     run_time = time.time() - start_time
     print('time to create dictogram from: ' + corpus_url + 'was: ' + str(run_time))
-    save_to_pickle(potter_dictogram, pickle_url)
-    return potter_dictogram
+    save_to_pickle(dictogram, pickle_url)
+    return dictogram
 
 def grab_dictogram(markov_order, pickle_url, corpus_url):
     try:
@@ -53,6 +53,12 @@ potter_corpus_url = 'txt-files/shorter-hpmor.txt'
 potter_pickle_url = 'potter_dictogram.p'
 potter_dictogram = grab_dictogram(potter_markov_order, potter_pickle_url, potter_corpus_url)
 
+# LOAD UP MARKOV CHAIN FOR PRINCESS BRIDE
+bride_markov_order = 2
+bride_corpus_url = 'txt-files/princess-bride.txt'
+bride_pickle_url = 'bride_dictogram.p'
+bride_dictogram = grab_dictogram(bride_markov_order, bride_pickle_url, bride_corpus_url)
+
 # ---ROUTES---
 @app.route('/')
 @app.route('/alice')
@@ -66,6 +72,12 @@ def show_potter_quote():
     num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
     return render_template('home.html', markov_sentence=markov_sentence, default='potter')
+
+@app.route('/bride')
+def show_bride_quote():
+    num_words = request.args.get('num', default=40, type=int)
+    markov_sentence = sample.generateNthOrderMarkovSentence(bride_dictogram, num_words, bride_markov_order)
+    return render_template('home.html', markov_sentence=markov_sentence, default='bride')
 
 # ---RUN CODE---
 if __name__ == '__main__':
