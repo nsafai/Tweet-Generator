@@ -17,50 +17,54 @@ app = Flask(__name__)
 
 # ---SAVE DATA INTO A PICKLE FILE---
 def save_to_pickle(data, filename):
-    # data can be any type, name must be a string
+    '''data can be any type, name must be a string'''
     pickle.dump(data, open( filename, "wb" ))
 
 def generate_dictogram(markov_order, pickle_url, corpus_url):
-
     corpus_content = cleanup.readFile(corpus_url)
     corpus_tokens = tokenizer.listOfTokens(corpus_content)
     start_time = time.time()
     potter_dictogram = MarkovDictogram(corpus_tokens, markov_order)
     run_time = time.time() - start_time
-    print('time to dictogram from: ' + corpus_url + 'was: ' + str(run_time))
+    print('time to create dictogram from: ' + corpus_url + 'was: ' + str(run_time))
     save_to_pickle(potter_dictogram, pickle_url)
     return potter_dictogram
 
 def grab_dictogram(markov_order, pickle_url, corpus_url):
     try:
+        start_time = time.time()
         dictogram = pickle.load(open(pickle_url, 'rb' ))
-        print('successfully loaded dictogram from pickle file: ' + pickle_url)
+        run_time = time.time() - start_time
+        print('successfully loaded dictogram file (' + pickle_url + ') in: ' + str(run_time))
     except:
         print('dictogram does not exist at url: ' + pickle_url)
         dictogram = generate_dictogram(markov_order, pickle_url, corpus_url)
     return dictogram
 
+# LOAD UP MARKOV CHAIN FOR ALICE IN WONDERLAND
+alice_markov_order = 2
+alice_corpus_url = 'txt-files/alice.txt'
+alice_pickle_url = 'alice_dictogram.p'
+alice_dictogram = grab_dictogram(alice_markov_order, alice_pickle_url, alice_corpus_url)
+
+# LOAD UP MARKOV CHAIN FOR H.POTTER AND METHODS OF RATIONALITY
+potter_markov_order = 3
+potter_corpus_url = 'txt-files/shorter-hpmor.txt'
+potter_pickle_url = 'potter_dictogram.p'
+potter_dictogram = grab_dictogram(potter_markov_order, potter_pickle_url, potter_corpus_url)
 
 # ---ROUTES---
 @app.route('/')
 @app.route('/alice')
 def index():
     num_words = request.args.get('num', default=40, type=int)
-    markov_order = 2
-    corpus_url = 'txt-files/alice.txt'
-    pickle_url = 'alice_dictogram.p'
-    dictogram = grab_dictogram(markov_order, pickle_url, corpus_url)
-    markov_sentence = sample.generateNthOrderMarkovSentence(dictogram, num_words, markov_order)
+    markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
     return render_template('home.html', markov_sentence=markov_sentence, default='alice')
 
 @app.route('/potter')
 def show_potter_quote():
     num_words = request.args.get('num', default=40, type=int)
-    markov_order = 3
-    corpus_url = 'txt-files/shorter-hpmor.txt'
-    pickle_url = 'potter_dictogram.p'
-    dictogram = grab_dictogram(markov_order, pickle_url, corpus_url)
-    markov_sentence = sample.generateNthOrderMarkovSentence(dictogram, num_words, markov_order)
+    markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
     return render_template('home.html', markov_sentence=markov_sentence, default='potter')
 
 # ---RUN CODE---

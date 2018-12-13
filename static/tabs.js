@@ -1,6 +1,6 @@
 function openPage(pageName, color) {
 
-  // CHANGE COLOR BASED ON WHAT TAB WAS JUST CLICKED
+  // CHANGE BODY COLOR BASED ON WHAT TAB WAS JUST CLICKED
   document.body.style.backgroundColor = color;
 
   // UPDATE CONTENT AND STYLING
