@@ -65,19 +65,19 @@ bride_dictogram = grab_dictogram(bride_markov_order, bride_pickle_url, bride_cor
 def index():
     num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(alice_dictogram, num_words, alice_markov_order)
-    return render_template('home.html', markov_sentence=markov_sentence, default='alice')
+    return render_template('home.html', markov_sentence=markov_sentence, theme='alice-theme')
 
 @app.route('/potter')
 def show_potter_quote():
     num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(potter_dictogram, num_words, potter_markov_order)
-    return render_template('home.html', markov_sentence=markov_sentence, default='potter')
+    return render_template('home.html', markov_sentence=markov_sentence, theme='potter-theme')
 
 @app.route('/bride')
 def show_bride_quote():
     num_words = request.args.get('num', default=40, type=int)
     markov_sentence = sample.generateNthOrderMarkovSentence(bride_dictogram, num_words, bride_markov_order)
-    return render_template('home.html', markov_sentence=markov_sentence, default='bride')
+    return render_template('home.html', markov_sentence=markov_sentence, theme='bride-theme')
 
 # ---RUN CODE---
 if __name__ == '__main__':

@@ -29,40 +29,22 @@
 </head>
 
 <body>
+  <!-- THEME HOLDER -->
+  {% if theme %}
+    <p style="display:none;" id="theme-tab-name">{{ theme }}</p>
+  {% endif %}
 
   <!-- NAV TABS -->
   <div class="tabs">
-    {% if default|string() == 'alice' %}
-    <button class="alice-tab tablink" onclick="openPage('alice', 'var(--bg-purple)')" id="defaultOpen">
+    <button class="alice-theme alice-tab tablink" onclick="openPage('alice', 'var(--bg-purple)')">
       <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
     </button>
-    <button class="potter-tab tablink" onclick="openPage('potter', 'var(--electromagnetic)')">
+    <button class="potter-theme potter-tab tablink" onclick="openPage('potter', 'var(--electromagnetic)')">
       <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
     </button>
-    <button class="bride-tab tablink" onclick="openPage('bride', 'var(--blueberry-soda)')">
+    <button class="bride-theme bride-tab tablink" onclick="openPage('bride', 'var(--blueberry-soda)')">
       <img class="tab-pic" src="{{url_for('static', filename='img/pb-face.png')}}" alt="">
     </button>
-    {% elif default|string() == 'potter' %}
-    <button class="alice-tab tablink" onclick="openPage('alice', 'var(--bg-purple)')">
-      <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
-    </button>
-    <button class="potter-tab tablink" onclick="openPage('potter', 'var(--electromagnetic)')" id="defaultOpen">
-      <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
-    </button>
-    <button class="bride-tab tablink" onclick="openPage('bride', 'var(--blueberry-soda)')">
-      <img class="tab-pic" src="{{url_for('static', filename='img/pb-face.png')}}" alt="">
-    </button>
-    {% elif default|string() == 'bride' %}
-    <button class="alice-tab tablink" onclick="openPage('alice', 'var(--bg-purple)')">
-      <img class="tab-pic" src="{{url_for('static', filename='img/cheshire-face.png')}}" alt="">
-    </button>
-    <button class="potter-tab tablink" onclick="openPage('potter', 'var(--electromagnetic)')">
-      <img class="tab-pic" src="{{url_for('static', filename='img/hp-face.png')}}" alt="">
-    </button>
-    <button class="bride-tab tablink" onclick="openPage('bride', 'var(--blueberry-soda)')">
-      <img class="tab-pic" src="{{url_for('static', filename='img/pb-face.png')}}" alt="" id="defaultOpen">
-    </button>
-    {% endif %}
   </div>
 
   <main class="container">
