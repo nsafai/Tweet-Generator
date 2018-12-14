@@ -81,10 +81,11 @@ function updateSentence(url_route) {
 
 // set the correct tab to default
 default_tab_theme = document.getElementById('theme-tab-name').innerHTML;
-// console.log(default_tab_theme);
+// there is only 1 correct tab, but getElementsByClass always returns an array
 matching_tabs = document.getElementsByClassName(default_tab_theme);
+// there is only 1 result, so grab first result of array
 correct_tab = matching_tabs[0];
-// console.log(correct_tab[0]);
+// add unique id to correct tab so we can tell JS to open it
 correct_tab.setAttribute("id", "defaultOpen");
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
