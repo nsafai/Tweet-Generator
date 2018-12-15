@@ -8,12 +8,12 @@ Building a tweet generator with the modest goal of passing the Turing test (or m
 - Refresh for another sample
 - If you want a longer sample, you can go to https://twt-generator.herokuapp.com/?num=200 for a 200 word sample.
 
-# How can I run this on my own machine?
+## How can I run this on my own machine?
 - clone and `cd` to the project directory
 - run `. venv/bin/activate` to start the virtual environment
 - run `flask run`
 
-# Technologies
+## Technologies
 Python 3.7, Flask, Gunicorn, HTML, CSS, JS, JQuery
 
 ## What's in here?
