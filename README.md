@@ -4,9 +4,10 @@
 Building a tweet generator with the modest goal of passing the Turing test (or making you laugh), using the [following tutorial](https://www.makeschool.com/academy/track/tweet-generator--data-structures---probability-with-python).
 
 ## How can I try this?
-- Go to https://twt-generator.herokuapp.com -- it will automatically generate a 23 word sample from Alice in Wonderland
-- Refresh for another sample
-- If you want a longer sample, you can go to https://twt-generator.herokuapp.com/?num=200 for a 200 word sample.
+- Go to http://tweetr.us -- it will automatically generate a 2nd order 40-word sample in the syle of Alice in Wonderland
+- You can also try http://tweetr.us/potter for a 3rd Markov order 40-word sample in the style of Harry Potter & The Methods of Rationality
+- If you want a longer sample, you can add a `num` parameter, for example: http://tweetr.us/?num=200 for a 200 word sample.
+
 
 ## How can I run this on my own machine?
 - clone and `cd` to the project directory
