@@ -14,7 +14,7 @@ Building a tweet generator with the modest goal of passing the Turing test (or m
 - run `flask run`
 
 # Technologies
-Flask, gunicorn, (LyricsGenius)[https://github.com/johnwmillr/LyricsGenius] & Python 3.7 libraries (incl. `hash()`, `random`)
+Python 3.7, Flask, Gunicorn, HTML, CSS, JS, JQuery
 
 ## What's in here?
 ### Modules
