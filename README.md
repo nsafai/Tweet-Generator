@@ -46,7 +46,7 @@ See the initial (more rudimentary) versions of the building blocks in the /old_s
 - [x] **11. Markov Chains Revisited**
 - [x] **12. Creating a Corpus** (WIP)
 - [x] **13. Parsing Text and Clean Up**  (WIP)
-- [ ] **14. Tokenization**
+- [x] **14. Tokenization** (WIP)
 - [ ] **15. Time to Tweet**
 
 ## Useful Terminal commands
